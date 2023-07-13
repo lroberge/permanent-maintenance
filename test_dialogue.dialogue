@@ -1,6 +1,6 @@
 ~ this_is_a_node_title
 
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
+[color=lightblue]Nathan[/color]: [[Hi|Hello|Howdy]], this is some dialogue.[next=0.5]
 Nathan: Here are some choices.
 - First one
 	Nathan: You picked the first one.
@@ -9,5 +9,24 @@ Nathan: Here are some choices.
 - Start again => this_is_a_node_title
 - End the conversation => END
 Nathan: For more information see the online documentation.
+
+=> END
+
+~ chatting_test
+[color="#3cd106"]Aurciel Hagane[/color]: holy shit its famous duelest aien rantetsu[next=3]
+[color="#fcffab"]Aien Rantetsu[/color]: Always nice to meet a fan[next=1]
+Kaya Pratifelis: omg I'm such a Rantetsuhead[next=0.1]
+Obe'lok Forna *Sargatanas: Lfg[next=1]
+Lucas Dazkar *Diabolos: Something furry idk?[next=0.3]
+Crip C'walker: LF Wife[next=0.5]
+Tatiana Gilgamesh: is he signing autographs?[next=0.3]
+: [color="#62e366"][1]<Aurciel Hagane> A RANTETSUHEAD[/color][next=4]
+[color="#3cd106"]Aurciel Hagane[/color]: can you sign my forehead[next=1]
+Crip C'walker: Ill buy all your raid food and pots[next=3]
+[color="#fcffab"]Aien Rantetsu[/color]: I'm not signing autographs because I never learned to write[next=0.5]
+: [color=lightgray]Screenshot saved.[/color][next=0.2]
+Rurio Bopins: icon[next=0.75]
+Aurciel Hagane: classic rantetsu[next=1]
+Lucas Dazkar *Diabolos: Can you solo this boss for us Rantestsu!
 
 => END
