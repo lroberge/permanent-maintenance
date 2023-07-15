@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cqask0bpem7vr"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_ayecb"]
-[ext_resource type="PackedScene" uid="uid://d3t477i8u0vib" path="res://targeting_decal.tscn" id="2_n2vxs"]
-[ext_resource type="Script" path="res://SmoothenedCameraArm.gd" id="3_gcphb"]
+[ext_resource type="Script" path="res://bodies/Player.gd" id="1_2kvc0"]
+[ext_resource type="PackedScene" uid="uid://d3t477i8u0vib" path="res://bodies/TargetingDecal.tscn" id="2_n2vxs"]
+[ext_resource type="Script" path="res://bodies/SmoothenedCameraArm.gd" id="3_gcphb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bdroc"]
 
@@ -27,7 +27,7 @@ uv1_offset = Vector3(0.25, 0, 0)
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_ayecb")
+script = ExtResource("1_2kvc0")
 GRABBY = true
 
 [node name="Model" type="MeshInstance3D" parent="."]

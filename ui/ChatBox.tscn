@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://caljshhui2rts"]
 
-[ext_resource type="Script" path="res://TestChat.gd" id="1_bspcm"]
-[ext_resource type="Theme" uid="uid://c8tvpebum4iki" path="res://ui_theme.tres" id="1_gowj2"]
+[ext_resource type="Script" path="res://ui/TestChat.gd" id="1_bspcm"]
+[ext_resource type="Theme" uid="uid://c8tvpebum4iki" path="res://ui/ui_theme.tres" id="1_gowj2"]
 
 [node name="Message List" type="MarginContainer"]
 anchors_preset = 15

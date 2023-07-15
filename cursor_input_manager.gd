@@ -8,7 +8,7 @@ var active_target: CombatBody = null
 ## If this is true, and cursor_target is released, active_target will be set to the value of potential_target
 var potentially_targeting = false
 var current_mouse_movement = 0
-var max_mouse_movement = 5
+var max_mouse_movement = 10
 
 func mouse_entered_entity(ent: CombatBody):
 	hovered_entity = ent
@@ -27,7 +27,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseMotion and potentially_targeting:
 		current_mouse_movement += event.relative.length()
-		print(event.relative)
 		if current_mouse_movement > max_mouse_movement:
 			potentially_targeting = false
 

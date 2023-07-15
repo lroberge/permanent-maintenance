@@ -22,7 +22,7 @@ func _ready() -> void:
 	$ChatText.get_v_scroll_bar().visible = true
 	$ChatText.get_v_scroll_bar().anchor_left = 1
 	$ChatText.text = ""
-	dialogue = load("res://test_dialogue.dialogue") as DialogueResource
+	dialogue = load("res://UI/test_dialogue.dialogue") as DialogueResource
 	dialogue_line = await dialogue.get_next_dialogue_line("chatting_test")
 
 func next(next_id: String) -> void:

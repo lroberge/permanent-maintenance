@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://d3t477i8u0vib"]
 
-[ext_resource type="Texture2D" uid="uid://4gjmu4oo0lxh" path="res://assets/targeting.svg" id="1_a7uhj"]
-[ext_resource type="Script" path="res://TargetingDecal.gd" id="2_kc8le"]
+[ext_resource type="Texture2D" uid="uid://4gjmu4oo0lxh" path="res://assets/targeting.svg" id="1_qkyi7"]
+[ext_resource type="Script" path="res://bodies/TargetingDecal.gd" id="2_ghdfj"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7evan"]
 animation = &"target_in"
@@ -30,6 +30,21 @@ states/target_out/node = SubResource("AnimationNodeAnimation_ycurk")
 states/target_out/position = Vector2(250.15, -4.50003)
 transitions = ["Start", "target_in", SubResource("AnimationNodeStateMachineTransition_887gt"), "target_in", "target_out", SubResource("AnimationNodeStateMachineTransition_5g56c"), "target_out", "target_in", SubResource("AnimationNodeStateMachineTransition_gh3g0")]
 graph_offset = Vector2(-199.6, -136)
+
+[sub_resource type="Animation" id="Animation_8ej10"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:albedo_mix")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_slkct"]
 resource_name = "target_in"
@@ -88,21 +103,6 @@ tracks/1/keys = {
 "values": [1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_8ej10"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:albedo_mix")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yoifa"]
 _data = {
 "RESET": SubResource("Animation_8ej10"),
@@ -113,14 +113,14 @@ _data = {
 [node name="TargetingDecal" type="Decal"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 size = Vector3(1, 1, 1.113)
-texture_albedo = ExtResource("1_a7uhj")
-texture_emission = ExtResource("1_a7uhj")
+texture_albedo = ExtResource("1_qkyi7")
+texture_emission = ExtResource("1_qkyi7")
 emission_energy = 0.0
 albedo_mix = 0.0
 upper_fade = 1e-05
 lower_fade = 1.07177e-05
 cull_mask = 1048574
-script = ExtResource("2_kc8le")
+script = ExtResource("2_ghdfj")
 
 [node name="TargetAnimTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_lrutj")

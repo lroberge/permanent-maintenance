@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://dda0ki6a4gws5"]
 
-[ext_resource type="PackedScene" uid="uid://deaahnkg11gl1" path="res://ChatBox_StyleTest.tscn" id="1_0ttqp"]
-[ext_resource type="Script" path="res://TempScaleAdjuster.gd" id="3_lqxfb"]
-[ext_resource type="PackedScene" uid="uid://cqask0bpem7vr" path="res://PlayerCharacter_refactor.tscn" id="4_fytty"]
-[ext_resource type="Script" path="res://TargetingUI.gd" id="5_uaylx"]
-[ext_resource type="PackedScene" uid="uid://l3805cwa7ggo" path="res://clock_boss_test.tscn" id="5_ujtii"]
+[ext_resource type="PackedScene" uid="uid://deaahnkg11gl1" path="res://ui/ChatBox_StyleTest.tscn" id="1_0ttqp"]
+[ext_resource type="Script" path="res://ui/TempScaleAdjuster.gd" id="2_6fchn"]
+[ext_resource type="Script" path="res://ui/TargetingUI.gd" id="3_027qw"]
+[ext_resource type="PackedScene" uid="uid://cqask0bpem7vr" path="res://bodies/PlayerCharacter.tscn" id="4_fytty"]
+[ext_resource type="PackedScene" uid="uid://l3805cwa7ggo" path="res://bodies/clock_boss_test.tscn" id="5_ujtii"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5ihy0"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -88,7 +88,7 @@ min_value = 1.0
 max_value = 2.0
 step = 0.01
 value = 1.0
-script = ExtResource("3_lqxfb")
+script = ExtResource("2_6fchn")
 
 [node name="Label" type="Label" parent="SpinBox"]
 layout_mode = 1
@@ -111,7 +111,7 @@ offset_right = 59.0
 offset_bottom = 130.0
 grow_horizontal = 2
 text = "TARGET: (none)"
-script = ExtResource("5_uaylx")
+script = ExtResource("3_027qw")
 
 [node name="TestEnvironment" type="Node3D" parent="."]
 
@@ -137,7 +137,7 @@ TARGET_NAME = "Myself"
 
 [node name="ArenaWalls" type="StaticBody3D" parent="TestEnvironment"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-collision_layer = 3
+collision_layer = 2
 input_ray_pickable = false
 
 [node name="ArenaWallsCollision" type="CollisionShape3D" parent="TestEnvironment/ArenaWalls"]
