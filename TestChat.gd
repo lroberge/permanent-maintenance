@@ -19,6 +19,8 @@ var dialogue_line: DialogueLine:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$ChatText.get_v_scroll_bar().visible = true
+	$ChatText.get_v_scroll_bar().anchor_left = 1
 	$ChatText.text = ""
 	dialogue = load("res://test_dialogue.dialogue") as DialogueResource
 	dialogue_line = await dialogue.get_next_dialogue_line("chatting_test")
@@ -26,6 +28,15 @@ func _ready() -> void:
 func next(next_id: String) -> void:
 	self.dialogue_line = await dialogue.get_next_dialogue_line(next_id)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta: float) -> void:
+	if $ChatText.get_v_scroll_bar().value > 0:
+		$ChatText/ScrollFadeTop.visible = true
+	else:
+		$ChatText/ScrollFadeTop.visible = false
+
+	if $ChatText.get_v_scroll_bar().value < ($ChatText.get_v_scroll_bar().max_value - $ChatText.get_v_scroll_bar().page):
+		$ChatText/ScrollFadeBot.visible = true
+	else:
+		$ChatText/ScrollFadeBot.visible = false
 	pass

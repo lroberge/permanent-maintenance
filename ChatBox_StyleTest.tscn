@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://deaahnkg11gl1"]
+[gd_scene load_steps=5 format=3 uid="uid://deaahnkg11gl1"]
 
 [ext_resource type="PackedScene" uid="uid://caljshhui2rts" path="res://ChatBox.tscn" id="1_mqxph"]
 [ext_resource type="Theme" uid="uid://uppn2s06nbbb" path="res://chat_y2k_theme.tres" id="2_r03ql"]
+
+[sub_resource type="Gradient" id="Gradient_exjnx"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3y7tp"]
+gradient = SubResource("Gradient_exjnx")
+width = 1
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
 
 [node name="Message List" instance=ExtResource("1_mqxph")]
 theme = ExtResource("2_r03ql")
@@ -20,15 +29,83 @@ text = "[code][color=blue]a player[/color]:[/code] here is some example chat tex
 [code][color=blue]a player[/color]:[/code] here is some example chat text
 [code][color=blue]a player[/color]:[/code] here is some example chat text
 [code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
+[code][color=blue]a player[/color]:[/code] here is some example chat text
 [code][color=blue]a player[/color]:[/code] here is some example chat text"
+
+[node name="ScrollFadeTop" type="TextureRect" parent="ChatBox/Background/InnerMargin/ChatText" index="1"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -19.0
+offset_bottom = 18.0
+grow_horizontal = 2
+texture = SubResource("GradientTexture2D_3y7tp")
+expand_mode = 1
+
+[node name="ScrollFadeBot" type="TextureRect" parent="ChatBox/Background/InnerMargin/ChatText" index="2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+offset_right = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_3y7tp")
+expand_mode = 1
+flip_v = true
 
 [node name="Button" parent="ChatBox/HBoxContainer" index="0"]
 text = "area"
 
 [node name="Button4" parent="ChatBox/HBoxContainer" index="1"]
+focus_mode = 0
 text = "clan"
 
 [node name="Button2" parent="ChatBox/HBoxContainer" index="2"]
+focus_mode = 0
 text = "dialogue"
 
 [node name="Button3" parent="ChatBox/HBoxContainer" index="3"]

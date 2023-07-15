@@ -1,6 +1,12 @@
-extends CombatBody
+extends CharacterBody3D
+
+const TARGET_NAME = "Myself"
 
 const deadzone = 0.3
+
+@export var MOVE_SPEED = 5.0
+@export var TURN_SPEED = 10.0
+@onready var TURN_SPEED_RADIANS = deg_to_rad(TURN_SPEED)
 
 @export_group("Player Camera")
 ## If true, only capture the mouse (and accept camera input) while RMB is held. Otherwise, always capture the mouse
@@ -71,13 +77,32 @@ func v2_xz_v3(v2: Vector2) -> Vector3:
 	return Vector3(v2.x, 0, v2.y)
 	pass
 
+func _mouse_enter() -> void:
+	CursorInputManager.mouse_entered_entity(self)
+func _mouse_exit() -> void:
+	CursorInputManager.mouse_left_entity(self)
+func targeted() -> void:
+	$PlayerModel/TargetingDecal.target()
+func untargeted() -> void:
+	$PlayerModel/TargetingDecal.untarget()
+
 func _physics_process(delta: float) -> void:
-	moveDirection = Vector3.ZERO;
+	velocity = Vector3.ZERO
 	var inputDirection = Vector3(v2_xz_v3(Input.get_vector("player_left", "player_right", "player_fwd", "player_back")))
 	var inputDirection_mag = clamp(inputDirection.length(), 0, 1)
 
-	if inputDirection_mag >= deadzone:
-		inputDirection = inputDirection.normalized() * ((inputDirection_mag - deadzone) / (1 - deadzone))
-		moveDirection = inputDirection.rotated(Vector3.UP, $CameraArm.global_rotation.y)
 
-	super(delta)
+	if inputDirection_mag < deadzone:
+		inputDirection = Vector3.ZERO
+	else:
+		inputDirection = inputDirection.normalized() * ((inputDirection_mag - deadzone) / (1 - deadzone))
+		velocity = inputDirection.rotated(Vector3.UP, $CameraArm.global_rotation.y) * MOVE_SPEED
+
+	if velocity.length_squared() > 0:
+		var y_rotation = (-$PlayerModel.global_transform.basis.z).signed_angle_to(velocity, Vector3.UP)
+		if absf(y_rotation) > TURN_SPEED_RADIANS:
+			y_rotation = TURN_SPEED_RADIANS * signf(y_rotation)
+		$PlayerModel.rotation.y += y_rotation
+
+	move_and_slide()
+	pass

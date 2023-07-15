@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://b2iweh5n4ykct"]
 
-[ext_resource type="PackedScene" path="res://assets/external/Wall Clock 3dmodelscc0/Wall_Clock.fbx" id="1_2einc"]
+[ext_resource type="PackedScene" uid="uid://bwqr7dr1ttivy" path="res://assets/external/Wall Clock 3dmodelscc0/Wall_Clock.fbx" id="1_2einc"]
 [ext_resource type="Material" uid="uid://b3eceeq8co141" path="res://assets/external/Wall Clock 3dmodelscc0/clock_mat.tres" id="2_7qybo"]
 [ext_resource type="Texture2D" uid="uid://c1u6lysfjf3dp" path="res://assets/external/Wall Clock 3dmodelscc0/Glass_Base_Color.png" id="3_x6ait"]
 

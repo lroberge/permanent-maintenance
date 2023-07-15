@@ -1,16 +1,20 @@
-extends AnimatableBody3D
+class_name TargetableEntity
+extends CollisionObject3D
 
-const TARGET_NAME = "Clock Boss"
+@export var TARGET_NAME = "Unnamed"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
 func _mouse_enter() -> void:
-	CursorInputManager.targeted_entity = self
+	CursorInputManager.mouse_entered_entity(self)
 func _mouse_exit() -> void:
-	if CursorInputManager.targeted_entity == self:
-		CursorInputManager.targeted_entity = null
+	CursorInputManager.mouse_left_entity(self)
+func targeted() -> void:
+	$Model/TargetingDecal.target()
+func untargeted() -> void:
+	$Model/TargetingDecal.untarget()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

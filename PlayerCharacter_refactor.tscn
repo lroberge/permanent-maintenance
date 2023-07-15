@@ -1,8 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxke0y0wmqfun"]
+[gd_scene load_steps=10 format=3 uid="uid://cqask0bpem7vr"]
 
-[ext_resource type="Script" path="res://Player_old.gd" id="1_6fwxa"]
-[ext_resource type="PackedScene" uid="uid://d3t477i8u0vib" path="res://targeting_decal.tscn" id="2_8hjv7"]
-[ext_resource type="Script" path="res://SmoothenedCameraArm.gd" id="2_a0vng"]
+[ext_resource type="Script" path="res://Player.gd" id="1_ayecb"]
+[ext_resource type="PackedScene" uid="uid://d3t477i8u0vib" path="res://targeting_decal.tscn" id="2_n2vxs"]
+[ext_resource type="Script" path="res://SmoothenedCameraArm.gd" id="3_gcphb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_bdroc"]
 
@@ -27,16 +27,16 @@ uv1_offset = Vector3(0.25, 0, 0)
 collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 0.0
-script = ExtResource("1_6fwxa")
+script = ExtResource("1_ayecb")
 GRABBY = true
 
-[node name="PlayerModel" type="MeshInstance3D" parent="."]
+[node name="Model" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991394, 0)
 mesh = SubResource("CapsuleMesh_bdroc")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("ORMMaterial3D_1cps7")
 
-[node name="TargetingDecal" parent="PlayerModel" instance=ExtResource("2_8hjv7")]
+[node name="TargetingDecal" parent="Model" instance=ExtResource("2_n2vxs")]
 transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, 0, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -47,7 +47,7 @@ shape = SubResource("CapsuleShape3D_bq7h6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("SeparationRayShape3D_c3e8b")
 spring_length = 6.0
-script = ExtResource("2_a0vng")
+script = ExtResource("3_gcphb")
 
 [node name="Camera" type="Camera3D" parent="CameraArm"]
 fov = 80.0
