@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+const TARGET_NAME = "Myself"
+
 const deadzone = 0.3
 
 @export var MOVE_SPEED = 5.0
@@ -11,16 +13,33 @@ const deadzone = 0.3
 @export var GRABBY = false
 ## Only with Grabby controls: If true, return the cursor to the position it was at before grabbing. Otherwise, reset the mouse to the center of the screen
 @export var GRABBY_KEEP_CURSOR_POS = true
-@export var SENSITIVITY = 0.1
+@export var INVERT_CAMERA_VERTICAL = false
+@export var INVERT_CAMERA_HORIZONTAL = false
+@export_range(0.01, 1.0, 0.01, "hide_slider", "or_greater") var SENSITIVITY = 0.1
+@export_range(0.0, 1.0, 0.01, "hide_slider", "or_greater") var VERTICAL_SENSITIVITY = 0.0
+@export_range(0.0, 1.0, 0.01, "hide_slider", "or_greater") var HORIZONTAL_SENSITIVITY = 0.0
 ## Lowest angle in degrees allowed for camera pitch.
 @export var LOWER_LIMIT = -70.0
 ## Highest angle in degrees allowed for camera pitch.
 @export var UPPER_LIMIT = 30.0
+@export var MIN_ZOOM = 2
+@export var MAX_ZOOM = 8
+@export var ZOOM_SPEED = 10
+@export var ZOOM_INCREMENT = 0.5
 
 var previous_cursor_pos = Vector2.ZERO
+var current_zoom = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if VERTICAL_SENSITIVITY <= 0:
+		VERTICAL_SENSITIVITY = SENSITIVITY
+	if HORIZONTAL_SENSITIVITY <= 0:
+		HORIZONTAL_SENSITIVITY = SENSITIVITY
+	$CameraArm.MIN_ZOOM = MIN_ZOOM
+	$CameraArm.MAX_ZOOM = MAX_ZOOM
+	$CameraArm.ZOOM_SPEED = ZOOM_SPEED
+	$CameraArm.ZOOM_INCREMENT = ZOOM_INCREMENT
 	# If not grabby controls, always capture the mouse
 	if not GRABBY:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -30,27 +49,34 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _input(event: InputEvent) -> void:
+
+func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_close"):
 		get_tree().quit()
 
 	# Grabby controls - cursor is captured only while RMB held + controls camera only during that period
 	if GRABBY:
-		if event.is_action_pressed("camera_grab"):
-			previous_cursor_pos = event.position
+		if event.is_action_pressed("camera_grab") and Input.is_action_just_pressed("camera_grab"):
+			previous_cursor_pos = event.global_position
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		if event.is_action_released("camera_grab"):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 			if GRABBY_KEEP_CURSOR_POS:
-				Input.warp_mouse(previous_cursor_pos)
+				get_tree().root.warp_mouse(previous_cursor_pos)
 
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		$CameraArm.rotation_degrees.y -= event.relative.x * SENSITIVITY
-		$CameraArm.rotation_degrees.x = clamp($CameraArm.rotation_degrees.x - event.relative.y * SENSITIVITY, LOWER_LIMIT, UPPER_LIMIT)
+	if event is InputEventMouseMotion and (Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED):
+		$CameraArm.rotation_degrees.y -= (event.relative.x * SENSITIVITY) * (-1 if INVERT_CAMERA_HORIZONTAL else 1)
+		$CameraArm.rotation_degrees.x = clamp($CameraArm.rotation_degrees.x - ((event.relative.y * SENSITIVITY) * (-1 if INVERT_CAMERA_VERTICAL else 1)), LOWER_LIMIT, UPPER_LIMIT)
 
 func v2_xz_v3(v2: Vector2) -> Vector3:
 	return Vector3(v2.x, 0, v2.y)
 	pass
+
+func _mouse_enter() -> void:
+	CursorInputManager.targeted_entity = self
+func _mouse_exit() -> void:
+	if CursorInputManager.targeted_entity == self:
+		CursorInputManager.targeted_entity = null
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector3.ZERO

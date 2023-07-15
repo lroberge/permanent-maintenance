@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2iweh5n4ykct"]
+
+[ext_resource type="PackedScene" path="res://assets/external/Wall Clock 3dmodelscc0/Wall_Clock.fbx" id="1_2einc"]
+[ext_resource type="Material" uid="uid://b3eceeq8co141" path="res://assets/external/Wall Clock 3dmodelscc0/clock_mat.tres" id="2_7qybo"]
+[ext_resource type="Texture2D" uid="uid://c1u6lysfjf3dp" path="res://assets/external/Wall Clock 3dmodelscc0/Glass_Base_Color.png" id="3_x6ait"]
+
+[sub_resource type="Animation" id="Animation_r05w4"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootNode/Clock/Hours")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0.283, -0.648, -0.648, 0.283)
+
+[sub_resource type="Animation" id="Animation_tnsqk"]
+resource_name = "clock_anim"
+length = 6.0
+loop_mode = 1
+step = 0.005
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootNode/Clock/Seconds")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 1.22465e-16, 1, 0.75, 1, 0, 0, 1, -4.37114e-08, 1.125, 1, 0, 0, 0.707107, 0.707107, 1.5, 1, 0, 0, 1.22465e-16, 1, 2.25, 1, 0, 0, 1, -4.37114e-08, 2.625, 1, 0, 0, 0.707107, 0.707107, 3, 1, 0, 0, 1.22465e-16, 1, 3.75, 1, 0, 0, 1, -4.37114e-08, 4.125, 1, 0, 0, 0.707107, 0.707107, 4.5, 1, 0, 0, 1.22465e-16, 1, 5.25, 1, 0, 0, 1, -4.37114e-08, 5.625, 1, 0, 0, 0.707107, 0.707107, 6, 1, 0, 0, 1.22465e-16, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootNode/Clock/Hours")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.648273, 0.282386, 0.282386, 0.648273, 1.5, 1, 0.658199, -0.258406, -0.258406, 0.658199, 3, 1, 0.283, -0.648, -0.648, 0.283, 4.5, 1, 0.258581, 0.65813, 0.65813, 0.258581)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RootNode/Clock/Minutes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0.707107, 0, 0, 0.707107, 1.5, 1, -1.54543e-08, 0.707107, 0.707107, 4.63629e-08, 2.25, 1, 0.5, -0.5, -0.5, 0.5, 3, 1, 0.707107, 0, 0, 0.707107, 4.5, 1, -1.54543e-08, 0.707107, 0.707107, 4.63629e-08, 5.25, 1, 0.5, -0.5, -0.5, 0.5)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_stifc"]
+_data = {
+"RESET": SubResource("Animation_r05w4"),
+"clock_anim": SubResource("Animation_tnsqk")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d4din"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.431373)
+albedo_texture = ExtResource("3_x6ait")
+
+[node name="Wall_Clock" instance=ExtResource("1_2einc")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
+autoplay = "clock_anim"
+libraries = {
+"": SubResource("AnimationLibrary_stifc")
+}
+
+[node name="Clock" parent="RootNode" index="0"]
+surface_material_override/0 = ExtResource("2_7qybo")
+
+[node name="Seconds" parent="RootNode/Clock" index="0"]
+transform = Transform3D(0.302482, -0.953155, 0, 0.953155, 0.302482, 0, 0, 0, 1, 0, 2.49324e-19, 0.00817695)
+surface_material_override/0 = ExtResource("2_7qybo")
+
+[node name="Hours" parent="RootNode/Clock" index="1"]
+transform = Transform3D(-0.67964, -2.73648e-07, -0.733546, -0.733546, -1.1951e-07, 0.67964, -2.73648e-07, 1, -1.1951e-07, 4.26441e-20, 3.07871e-19, 0.00444332)
+surface_material_override/0 = ExtResource("2_7qybo")
+
+[node name="Minutes" parent="RootNode/Clock" index="2"]
+transform = Transform3D(0.806995, -3.14445e-08, -0.590558, -0.590558, -9.62141e-08, -0.806995, -3.14445e-08, 1, -9.62141e-08, 0, 3.55727e-19, 0.00580946)
+surface_material_override/0 = ExtResource("2_7qybo")
+
+[node name="Glass" parent="RootNode/Clock" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_d4din")

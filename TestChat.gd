@@ -1,4 +1,4 @@
-extends Node
+extends MarginContainer
 
 var dialogue
 var msg_template
@@ -8,7 +8,7 @@ var dialogue_line: DialogueLine:
 		dialogue_line = next_dialogue_line
 		var chatline = ""
 		if not dialogue_line.character.is_empty():
-			chatline += dialogue_line.character + ": "
+			chatline += "[code]" + dialogue_line.character + "[/code]" + ": "
 		chatline += dialogue_line.text + "\n"
 		$ChatText.append_text(chatline)
 		if dialogue_line.time != null:
@@ -19,6 +19,7 @@ var dialogue_line: DialogueLine:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$ChatText.text = ""
 	dialogue = load("res://test_dialogue.dialogue") as DialogueResource
 	dialogue_line = await dialogue.get_next_dialogue_line("chatting_test")
 

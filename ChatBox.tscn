@@ -1,26 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://caljshhui2rts"]
+[gd_scene load_steps=3 format=3 uid="uid://caljshhui2rts"]
 
 [ext_resource type="Script" path="res://TestChat.gd" id="1_bspcm"]
+[ext_resource type="Theme" uid="uid://c8tvpebum4iki" path="res://ui_theme.tres" id="1_gowj2"]
 
-[node name="ChatBox" type="VBoxContainer"]
+[node name="Message List" type="MarginContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Message List" type="MarginContainer" parent="."]
-layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_gowj2")
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Background" type="PanelContainer" parent="Message List"]
+[node name="ChatBox" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="InnerMargin" type="MarginContainer" parent="Message List/Background"]
+[node name="Background" type="PanelContainer" parent="ChatBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InnerMargin" type="MarginContainer" parent="ChatBox/Background"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
@@ -28,51 +32,35 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 script = ExtResource("1_bspcm")
 
-[node name="Scroll" type="ScrollContainer" parent="Message List/Background/InnerMargin"]
-visible = false
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 2
-
-[node name="MessagesInnerInnerMargin" type="MarginContainer" parent="Message List/Background/InnerMargin/Scroll"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/margin_right = 10
-
-[node name="MessagesContainer" type="VBoxContainer" parent="Message List/Background/InnerMargin/Scroll/MessagesInnerInnerMargin"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ChatText" type="RichTextLabel" parent="Message List/Background/InnerMargin"]
+[node name="ChatText" type="RichTextLabel" parent="ChatBox/Background/InnerMargin"]
 layout_mode = 2
 bbcode_enabled = true
 scroll_following = true
 autowrap_mode = 2
 shortcut_keys_enabled = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="ChatBox"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="Button" type="Button" parent="ChatBox/HBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 button_pressed = true
 text = "General"
 
-[node name="Button4" type="Button" parent="HBoxContainer"]
+[node name="Button4" type="Button" parent="ChatBox/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 text = "Clan"
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
+[node name="Button2" type="Button" parent="ChatBox/HBoxContainer"]
 layout_mode = 2
 toggle_mode = true
 text = "Dialogue"
 
-[node name="Button3" type="Button" parent="HBoxContainer"]
+[node name="Button3" type="Button" parent="ChatBox/HBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 text = "Battle"

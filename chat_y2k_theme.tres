@@ -1,0 +1,128 @@
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://uppn2s06nbbb"]
+
+[ext_resource type="FontFile" uid="uid://cqqhi8fbf7n3u" path="res://assets/fonts/Archivo/Archivo-VariableFont_wdth,wght.ttf" id="1_l6fmr"]
+[ext_resource type="FontFile" uid="uid://culb0iqutp5v0" path="res://assets/fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="2_ogagb"]
+
+[sub_resource type="FontVariation" id="FontVariation_4cdjy"]
+base_font = ExtResource("1_l6fmr")
+variation_embolden = -0.25
+spacing_glyph = -1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eckhr"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(0.74902, 0.74902, 0.74902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2f6e1"]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvbuh"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+
+[sub_resource type="FontVariation" id="FontVariation_3xuha"]
+base_font = ExtResource("2_ogagb")
+variation_embolden = 0.6
+
+[sub_resource type="FontVariation" id="FontVariation_0r0ck"]
+base_font = ExtResource("1_l6fmr")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tm3dv"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kaoo2"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgitv"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri87o"]
+content_margin_left = 9.0
+content_margin_top = 0.0
+content_margin_right = 9.0
+content_margin_bottom = 0.0
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 6
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/fonts/font = SubResource("FontVariation_4cdjy")
+Button/styles/normal = SubResource("StyleBoxFlat_eckhr")
+Button/styles/pressed = SubResource("StyleBoxFlat_2f6e1")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_kvbuh")
+RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
+RichTextLabel/fonts/mono_font = SubResource("FontVariation_3xuha")
+RichTextLabel/fonts/normal_font = SubResource("FontVariation_0r0ck")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_tm3dv")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_kaoo2")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_cgitv")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_ri87o")
