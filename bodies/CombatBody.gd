@@ -1,7 +1,9 @@
 class_name CombatBody extends CharacterBody3D
 
+signal health_changed(new_health: float, max_health: float)
+
 @export var TARGET_NAME = "Unknown"
-@export var MAX_HEALTH = 100
+@export var MAX_HEALTH = 100.0
 var curr_health = MAX_HEALTH
 
 ## Movement speed of this body.
@@ -23,6 +25,15 @@ func targeted() -> void:
 	$Model/TargetingDecal.target()
 func untargeted() -> void:
 	$Model/TargetingDecal.untarget()
+
+
+func alter_health(delta: float) -> void:
+	curr_health += delta
+	if curr_health > MAX_HEALTH:
+		curr_health = MAX_HEALTH
+	elif curr_health < 0:
+		curr_health = 0
+	health_changed.emit(curr_health, MAX_HEALTH)
 
 # Movement
 

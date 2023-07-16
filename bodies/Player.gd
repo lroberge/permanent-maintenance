@@ -54,7 +54,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	# Grabby controls - cursor is captured only while RMB held + controls camera only during that period
 	if GRABBY:
 		if event.is_action_pressed("camera_grab") and Input.is_action_just_pressed("camera_grab"):
-			previous_cursor_pos = event.global_position
+			# Using event.global_position doesn't incorporate the viewport scaling for some reason
+			previous_cursor_pos = get_tree().root.get_mouse_position()
 			# Confine and hide the cursor without forcibly moving it.
 			# Prevents the cursor from visibly jumping to the center.
 			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
@@ -67,13 +68,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		$CameraArm.rotation_degrees.y -= (event.relative.x * HORIZONTAL_SENSITIVITY) * (-1 if INVERT_CAMERA_HORIZONTAL else 1)
 		$CameraArm.rotation_degrees.x = clamp($CameraArm.rotation_degrees.x - ((event.relative.y * VERTICAL_SENSITIVITY) * (-1 if INVERT_CAMERA_VERTICAL else 1)), LOWER_LIMIT, UPPER_LIMIT)
 
-func v2_xz_v3(v2: Vector2) -> Vector3:
-	return Vector3(v2.x, 0, v2.y)
-	pass
 
 func _physics_process(delta: float) -> void:
 	moveDirection = Vector3.ZERO;
-	var inputDirection = Vector3(v2_xz_v3(Input.get_vector("player_left", "player_right", "player_fwd", "player_back")))
+	var inputDirection = Vector3(Util.v2_xz_v3(Input.get_vector("player_left", "player_right", "player_fwd", "player_back")))
 	var inputDirection_mag = clamp(inputDirection.length(), 0, 1)
 
 	if inputDirection_mag >= deadzone:

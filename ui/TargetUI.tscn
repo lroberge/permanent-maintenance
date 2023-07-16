@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq34yc256jsxj"]
+
+[ext_resource type="Theme" uid="uid://uppn2s06nbbb" path="res://ui/y2k_theme.tres" id="1_xtet2"]
+[ext_resource type="Script" path="res://ui/TargetUI.gd" id="2_aryj5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lu7kj"]
+bg_color = Color(1, 0.807843, 0, 0.611765)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[node name="TargetDisplayBar" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_xtet2")
+script = ExtResource("2_aryj5")
+TWEEN_SPEED = 0.75
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="HBoxContainer/HFlowContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Health Bar Person Name Goes Here"
+
+[node name="HFlowContainer2" type="HFlowContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="PercentLabel" type="Label" parent="HBoxContainer/HFlowContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "45%"
+
+[node name="HealthBarBG" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_lu7kj")
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="HealthBar" type="ProgressBar" parent="HealthBarBG"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 27)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.001
+show_percentage = false

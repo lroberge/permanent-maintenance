@@ -1,21 +1,31 @@
-[gd_scene load_steps=16 format=3 uid="uid://dda0ki6a4gws5"]
+[gd_scene load_steps=18 format=3 uid="uid://dda0ki6a4gws5"]
 
 [ext_resource type="PackedScene" uid="uid://deaahnkg11gl1" path="res://ui/ChatBox_StyleTest.tscn" id="1_0ttqp"]
+[ext_resource type="PackedScene" uid="uid://cq34yc256jsxj" path="res://ui/TargetUI.tscn" id="1_xreyd"]
 [ext_resource type="Script" path="res://ui/TempScaleAdjuster.gd" id="2_6fchn"]
-[ext_resource type="Script" path="res://ui/TargetingUI.gd" id="3_027qw"]
 [ext_resource type="PackedScene" uid="uid://cqask0bpem7vr" path="res://bodies/PlayerCharacter.tscn" id="4_fytty"]
 [ext_resource type="PackedScene" uid="uid://l3805cwa7ggo" path="res://bodies/clock_boss_test.tscn" id="5_ujtii"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5ihy0"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+[sub_resource type="Gradient" id="Gradient_7x8vs"]
+offsets = PackedFloat32Array(0.495652)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2n5bq"]
+gradient = SubResource("Gradient_7x8vs")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_32uy3"]
+panorama = SubResource("GradientTexture1D_2n5bq")
 
 [sub_resource type="Sky" id="Sky_isbwl"]
-sky_material = SubResource("ProceduralSkyMaterial_5ihy0")
+sky_material = SubResource("PanoramaSkyMaterial_32uy3")
 
 [sub_resource type="Environment" id="Environment_n6g1r"]
 background_mode = 2
+background_energy_multiplier = 0.65
 sky = SubResource("Sky_isbwl")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 10.0
 tonemap_mode = 2
 glow_enabled = true
 
@@ -64,6 +74,15 @@ data = PackedVector3Array(-0.1951, 0, 0.9808, 0, 1, 1, -0.1951, 1, 0.9808, -0.19
 
 [node name="Node" type="Node"]
 
+[node name="TargetDisplayBar" parent="." instance=ExtResource("1_xreyd")]
+anchors_preset = 10
+anchor_bottom = 0.0
+offset_left = 203.0
+offset_top = 50.0
+offset_right = -203.0
+offset_bottom = 103.0
+grow_vertical = 1
+
 [node name="Message List" parent="." instance=ExtResource("1_0ttqp")]
 anchors_preset = 2
 anchor_top = 1.0
@@ -76,6 +95,7 @@ grow_horizontal = 1
 grow_vertical = 0
 
 [node name="SpinBox" type="SpinBox" parent="."]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -85,7 +105,7 @@ offset_right = -8.0
 offset_bottom = 71.0
 grow_horizontal = 0
 min_value = 1.0
-max_value = 2.0
+max_value = 1.5
 step = 0.01
 value = 1.0
 script = ExtResource("2_6fchn")
@@ -100,18 +120,6 @@ offset_top = -31.0
 offset_bottom = -5.0
 grow_horizontal = 0
 text = "THE FUCKED UP SCALE ADJUSTER"
-
-[node name="TargetLabel" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -59.0
-offset_top = 104.0
-offset_right = 59.0
-offset_bottom = 130.0
-grow_horizontal = 2
-text = "TARGET: (none)"
-script = ExtResource("3_027qw")
 
 [node name="TestEnvironment" type="Node3D" parent="."]
 
@@ -131,7 +139,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_p0uk5")
 
 [node name="PlayerBody" parent="TestEnvironment" instance=ExtResource("4_fytty")]
-TARGET_NAME = "Myself"
 
 [node name="ClockBossBody" parent="TestEnvironment" instance=ExtResource("5_ujtii")]
 
@@ -142,5 +149,10 @@ input_ray_pickable = false
 
 [node name="ArenaWallsCollision" type="CollisionShape3D" parent="TestEnvironment/ArenaWalls"]
 shape = SubResource("ConcavePolygonShape3D_4uaxr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="TestEnvironment"]
+transform = Transform3D(-0.5192, 0.363548, 0.773475, 0.633594, -0.443647, 0.633826, 0.573576, 0.819152, 4.15065e-08, 0, 5.34839, 0)
+shadow_enabled = true
+sky_mode = 1
 
 [connection signal="value_changed" from="SpinBox" to="SpinBox" method="_on_value_changed"]

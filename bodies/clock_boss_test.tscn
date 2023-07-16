@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://l3805cwa7ggo"]
 
-[ext_resource type="Script" path="res://bodies/CombatBody.gd" id="1_ean3k"]
+[ext_resource type="Script" path="res://bodies/ClockBoss.gd" id="1_4yamp"]
 [ext_resource type="PackedScene" uid="uid://b2iweh5n4ykct" path="res://assets/external/Wall Clock 3dmodelscc0/wall_clock.tscn" id="2_4sfh3"]
-[ext_resource type="PackedScene" uid="uid://d3t477i8u0vib" path="res://TargetingDecal.tscn" id="3_vefhu"]
+[ext_resource type="PackedScene" uid="uid://d3t477i8u0vib" path="res://bodies/TargetingDecal.tscn" id="3_vefhu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k84cg"]
 size = Vector3(18.9213, 20.8026, 7.61954)
 
 [node name="TimekeeperBoss" type="CharacterBody3D"]
-script = ExtResource("1_ean3k")
+script = ExtResource("1_4yamp")
 TARGET_NAME = "Timekeeper"
 
 [node name="Model" parent="." instance=ExtResource("2_4sfh3")]

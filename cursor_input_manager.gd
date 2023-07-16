@@ -1,5 +1,7 @@
 extends Node
 
+signal target_changed(new_target: CombatBody, old_target: CombatBody)
+
 ## Current entity that will be targeted if clicked
 var hovered_entity: CombatBody = null
 var potential_target: CombatBody = null
@@ -33,6 +35,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.is_action_just_released("cursor_target") and potentially_targeting:
 		if active_target != null:
 			active_target.untargeted()
+		target_changed.emit(potential_target, active_target)
 		active_target = potential_target
 		if active_target != null:
 			active_target.targeted()
