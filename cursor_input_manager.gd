@@ -19,6 +19,11 @@ func mouse_left_entity(ent: CombatBody):
 		hovered_entity = null
 
 func _unhandled_input(event: InputEvent) -> void:
+	if active_target != null:
+		if event.is_action_pressed("debug_damagetarget"):
+			active_target.alter_health(-1.0)
+		if event.is_action_pressed("debug_healtarget"):
+			active_target.alter_health(1.0)
 	if Input.is_action_just_pressed("cursor_target"):
 		current_mouse_movement = 0
 		potentially_targeting = true

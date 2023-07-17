@@ -1,7 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq34yc256jsxj"]
+[gd_scene load_steps=6 format=3 uid="uid://cq34yc256jsxj"]
 
 [ext_resource type="Theme" uid="uid://uppn2s06nbbb" path="res://ui/y2k_theme.tres" id="1_xtet2"]
 [ext_resource type="Script" path="res://ui/TargetUI.gd" id="2_aryj5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gmpv0"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 0.760784)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_ony7x"]
+font_size = 20
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lu7kj"]
 bg_color = Color(1, 0.807843, 0, 0.611765)
@@ -16,49 +35,64 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 10
 
-[node name="TargetDisplayBar" type="VBoxContainer"]
-anchors_preset = 15
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 58.0
 grow_horizontal = 2
-grow_vertical = 2
+theme = ExtResource("1_xtet2")
+theme_override_styles/panel = SubResource("StyleBoxFlat_gmpv0")
+script = ExtResource("2_aryj5")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TargetDisplayBar" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_xtet2")
-script = ExtResource("2_aryj5")
-TWEEN_SPEED = 0.75
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TargetDisplayBar"]
 layout_mode = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="HBoxContainer"]
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/TargetDisplayBar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="NameLabel" type="Label" parent="HBoxContainer/HFlowContainer"]
+[node name="NameLabel" type="Label" parent="MarginContainer/TargetDisplayBar/HBoxContainer/HFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Health Bar Person Name Goes Here"
+label_settings = SubResource("LabelSettings_ony7x")
 
-[node name="HFlowContainer2" type="HFlowContainer" parent="HBoxContainer"]
+[node name="HFlowContainer2" type="HFlowContainer" parent="MarginContainer/TargetDisplayBar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 8
 alignment = 2
 
-[node name="PercentLabel" type="Label" parent="HBoxContainer/HFlowContainer2"]
+[node name="PercentLabel" type="Label" parent="MarginContainer/TargetDisplayBar/HBoxContainer/HFlowContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "45%"
 
-[node name="HealthBarBG" type="ProgressBar" parent="."]
+[node name="HealthBarBG" type="ProgressBar" parent="MarginContainer/TargetDisplayBar"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 27)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/fill = SubResource("StyleBoxFlat_lu7kj")
 max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="HealthBar" type="ProgressBar" parent="HealthBarBG"]
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/TargetDisplayBar/HealthBarBG"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 27)
 layout_mode = 1
@@ -67,6 +101,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 max_value = 1.0
 step = 0.001
 show_percentage = false

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48.568363mm"
+   height="49.912109mm"
+   viewBox="0 0 48.568364 49.91211"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="targethealthbg.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="128"
+     inkscape:cx="179.5964"
+     inkscape:cy="124.05554"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g4708"
+     showgrid="false"
+     inkscape:pagecheckerboard="true"
+     inkscape:window-width="1600"
+     inkscape:window-height="847"
+     inkscape:window-x="-8"
+     inkscape:window-y="116"
+     inkscape:window-maximized="1"
+     showguides="true" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="ninepatch_textbg"
+     style="display:none"
+     transform="translate(11.639927,11.816265)">
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1.32291663;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:25;stroke-dasharray:none;stroke-dashoffset:50;stroke-opacity:1"
+       d="m 12.90969,4.5218413 26.831987,0.00183 c 3.367128,2.296e-4 6.077848,2.7107114 6.077848,6.0778307 v 20.752243 c 0,3.367117 -2.710721,6.079707 -6.077848,6.077829 l -26.829342,-0.01497"
+       id="rect4592"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssssc" />
+  </g>
+  <g
+     inkscape:label="healthwheel_bg"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-61.216795,-92.701172)"
+     style="display:inline">
+    <g
+       id="g4708">
+      <path
+         sodipodi:nodetypes="cscc"
+         inkscape:connector-curvature="0"
+         id="rect821"
+         d="m 61.879199,141.95077 0.01621,-24.30226 c 0.009,-13.45387 10.831097,-24.284967 24.284971,-24.284972 10.446472,-4e-6 19.31167,6.530053 22.75304,15.747602"
+         style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.32291663;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:25;stroke-dasharray:none;stroke-dashoffset:13.22916698;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="sccccsccccs"
+         inkscape:connector-curvature="0"
+         id="path4600"
+         d="m 86.179688,92.701172 c -13.808881,5e-6 -24.936076,11.138918 -24.945313,24.947268 l -0.01758,24.96484 1.324219,-0.003 0.01563,-24.96193 c 0.0088,-13.0994 10.524179,-23.623045 23.623047,-23.623049 10.170821,-4e-6 18.806119,6.401089 22.153099,15.365819 l 0.0328,0.0884 1.35097,-0.0207 -0.16385,-0.58002 C 106.01697,99.408539 96.90181,92.701168 86.179688,92.701172 Z"
+         style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:medium;line-height:normal;font-family:sans-serif;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.32291663;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:25;stroke-dasharray:none;stroke-dashoffset:13.22916698;stroke-opacity:1;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="healthwheel"
+     style="display:none"
+     transform="translate(11.639927,11.816265)">
+    <circle
+       style="fill:none;fill-opacity:1;stroke:#f800fb;stroke-width:12.37978554;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:6.99212599;stroke-opacity:1"
+       id="path819"
+       cx="13.132864"
+       cy="13.132867"
+       r="14.292884" />
+  </g>
+</svg>

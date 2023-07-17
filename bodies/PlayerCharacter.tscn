@@ -30,6 +30,7 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_2kvc0")
 GRABBY = true
 TARGET_NAME = "Myself"
+TEAM = 1
 
 [node name="Model" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991394, 0)

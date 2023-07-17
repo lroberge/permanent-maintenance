@@ -1,9 +1,12 @@
 class_name CombatBody extends CharacterBody3D
 
+enum CombatTeam {UNKNOWN, FRIEND, ENEMY}
+
 signal health_changed(new_health: float, max_health: float)
 
 @export var TARGET_NAME = "Unknown"
 @export var MAX_HEALTH = 100.0
+@export var TEAM: CombatTeam = CombatTeam.UNKNOWN
 var curr_health = MAX_HEALTH
 
 ## Movement speed of this body.
@@ -14,6 +17,7 @@ var curr_health = MAX_HEALTH
 
 ## The direction that this body wants to move.
 var moveDirection = Vector3.ZERO
+var curr_target: CombatBody = null
 
 # Targeting functions
 

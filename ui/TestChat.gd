@@ -1,7 +1,6 @@
 extends MarginContainer
 
-var dialogue
-var msg_template
+var dialogue = preload("res://ui/test_dialogue.dialogue")
 
 var dialogue_line: DialogueLine:
 	set(next_dialogue_line):
@@ -22,7 +21,6 @@ func _ready() -> void:
 	$ChatText.get_v_scroll_bar().value_changed.connect(scrolled)
 	$ChatText.text = ""
 	scrolled($ChatText.get_v_scroll_bar().value)
-	dialogue = load("res://UI/test_dialogue.dialogue") as DialogueResource
 	dialogue_line = await dialogue.get_next_dialogue_line("chatting_test")
 
 func next(next_id: String) -> void:

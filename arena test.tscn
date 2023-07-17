@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://dda0ki6a4gws5"]
 
 [ext_resource type="PackedScene" uid="uid://deaahnkg11gl1" path="res://ui/ChatBox_StyleTest.tscn" id="1_0ttqp"]
-[ext_resource type="PackedScene" uid="uid://cq34yc256jsxj" path="res://ui/TargetUI.tscn" id="1_xreyd"]
+[ext_resource type="PackedScene" uid="uid://bldostj6bevrm" path="res://ui/TargetUI_alttest.tscn" id="1_i2vch"]
 [ext_resource type="Script" path="res://ui/TempScaleAdjuster.gd" id="2_6fchn"]
 [ext_resource type="PackedScene" uid="uid://cqask0bpem7vr" path="res://bodies/PlayerCharacter.tscn" id="4_fytty"]
 [ext_resource type="PackedScene" uid="uid://l3805cwa7ggo" path="res://bodies/clock_boss_test.tscn" id="5_ujtii"]
@@ -74,14 +74,11 @@ data = PackedVector3Array(-0.1951, 0, 0.9808, 0, 1, 1, -0.1951, 1, 0.9808, -0.19
 
 [node name="Node" type="Node"]
 
-[node name="TargetDisplayBar" parent="." instance=ExtResource("1_xreyd")]
-anchors_preset = 10
-anchor_bottom = 0.0
-offset_left = 203.0
-offset_top = 50.0
-offset_right = -203.0
-offset_bottom = 103.0
-grow_vertical = 1
+[node name="TargetHealthbar" parent="." instance=ExtResource("1_i2vch")]
+offset_left = -275.0
+offset_top = 28.0
+offset_right = 275.0
+offset_bottom = 113.0
 
 [node name="Message List" parent="." instance=ExtResource("1_0ttqp")]
 anchors_preset = 2
