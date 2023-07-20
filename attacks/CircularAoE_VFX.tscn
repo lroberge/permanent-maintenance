@@ -1,0 +1,189 @@
+[gd_scene load_steps=13 format=3 uid="uid://dk63jm1qeljh0"]
+
+[ext_resource type="Script" path="res://attacks/AoEVFX.gd" id="1_3nc22"]
+
+[sub_resource type="Gradient" id="Gradient_sj4dt"]
+offsets = PackedFloat32Array(0.68018, 0.689189, 0.707207, 0.711712)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eu4t5"]
+gradient = SubResource("Gradient_sj4dt")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_m430g"]
+offsets = PackedFloat32Array(0.707207, 0.711712)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q4nps"]
+gradient = SubResource("Gradient_m430g")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_w0ye7"]
+offsets = PackedFloat32Array(0.707207, 0.711712)
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yn4ij"]
+gradient = SubResource("Gradient_w0ye7")
+width = 512
+height = 512
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_7tarf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("inner:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:albedo_mix")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("inner:albedo_mix")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_wh2k5"]
+resource_name = "countdown_to_aoe"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("inner:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-0.5, 1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vruvl"]
+resource_name = "despawn"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:albedo_mix")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("inner:albedo_mix")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ke1cy"]
+resource_name = "spawn"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0.01, 0.01, 0.01), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ri5bq"]
+_data = {
+"RESET": SubResource("Animation_7tarf"),
+"countdown_to_aoe": SubResource("Animation_wh2k5"),
+"despawn": SubResource("Animation_vruvl"),
+"spawn": SubResource("Animation_ke1cy")
+}
+
+[node name="VFX" type="Node3D"]
+script = ExtResource("1_3nc22")
+
+[node name="outline" type="Decal" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+size = Vector3(5, 100, 5)
+texture_albedo = SubResource("GradientTexture2D_eu4t5")
+modulate = Color(1, 0.101961, 0, 1)
+upper_fade = 1e-05
+lower_fade = 1e-05
+cull_mask = 1048574
+
+[node name="inner" type="Decal" parent="outline"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+size = Vector3(5, 100, 5)
+texture_albedo = SubResource("GradientTexture2D_q4nps")
+modulate = Color(1, 0.101961, 0, 1)
+upper_fade = 1e-05
+lower_fade = 1e-05
+cull_mask = 1048574
+
+[node name="inner_highlight" type="Decal" parent="outline"]
+size = Vector3(5, 100, 5)
+texture_albedo = SubResource("GradientTexture2D_yn4ij")
+modulate = Color(1, 0.101961, 0, 1)
+upper_fade = 1e-05
+lower_fade = 1e-05
+cull_mask = 1048574
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../outline")
+libraries = {
+"": SubResource("AnimationLibrary_ri5bq")
+}

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dup325n4kia6j"]
+
+[ext_resource type="Script" path="res://attacks/AoE.gd" id="1_pokv6"]
+[ext_resource type="PackedScene" uid="uid://c7fqeff7kfxye" path="res://attacks/SquareAoE_VFX.tscn" id="2_fcqil"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7smfm"]
+size = Vector3(4.25, 100, 4.25)
+
+[node name="AoE" type="Area3D"]
+collision_layer = 0
+collision_mask = 4
+input_ray_pickable = false
+script = ExtResource("1_pokv6")
+vfx_scene = ExtResource("2_fcqil")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_7smfm")

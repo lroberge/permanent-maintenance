@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="playoffline"
-run/main_scene="res://arena test.tscn"
+run/main_scene="res://debug room.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 config/icon="res://assets/external/netneighborhood.png"
@@ -22,6 +22,7 @@ config/windows_native_icon="res://assets/external/net.ico"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 CursorInputManager="*res://cursor_input_manager.gd"
 Util="*res://kapros_util.gd"
+AoeManager="*res://aoe_manager.gd"
 
 [display]
 
@@ -30,6 +31,7 @@ window/size/viewport_height=1080
 window/size/window_width_override=1152
 window/size/window_height_override=648
 window/energy_saving/keep_screen_on=false
+window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/dpi/allow_hidpi=false
 
@@ -114,6 +116,7 @@ locale/translations_pot_files=PackedStringArray("res://test_dialogue.dialogue", 
 3d_render/layer_2="solid"
 3d_physics/layer_1="solid objects"
 3d_physics/layer_2="invisible solids"
+3d_physics/layer_3="player hurtboxes"
 3d_physics/layer_8="clickboxes"
 
 [rendering]

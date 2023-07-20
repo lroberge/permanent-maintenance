@@ -29,36 +29,35 @@ outline_color = Color(1, 0, 0.270588, 0.94902)
 font_size = 15
 font_color = Color(0, 0, 0, 1)
 
-[node name="CenterContainer" type="CenterContainer"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_right = 250.0
-offset_bottom = 85.0
-grow_horizontal = 2
-script = ExtResource("2_yreag")
-
-[node name="TargetHUD" type="Control" parent="."]
-custom_minimum_size = Vector2(550, 85)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 0
-theme = ExtResource("1_of51w")
-
-[node name="PanelContainer" type="PanelContainer" parent="TargetHUD"]
-layout_mode = 1
+[node name="TargetHUD" type="Control"]
+visible = false
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_of51w")
+script = ExtResource("2_yreag")
+
+[node name="TargetHUDContainer" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(520, 84)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = 84.0
+grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ebfrt")
 
-[node name="Control" type="Control" parent="TargetHUD/PanelContainer"]
+[node name="HealthBarAssembly" type="Control" parent="TargetHUDContainer"]
 layout_mode = 2
 
-[node name="Control" type="Control" parent="TargetHUD/PanelContainer/Control"]
+[node name="HealthBarBGPolys" type="Control" parent="TargetHUDContainer/HealthBarAssembly"]
 layout_mode = 1
 anchors_preset = 0
 offset_left = -21.7424
@@ -66,22 +65,22 @@ offset_top = -28.5119
 offset_right = 167.258
 offset_bottom = 168.488
 
-[node name="Node2D" type="Node2D" parent="TargetHUD/PanelContainer/Control/Control"]
+[node name="2Dcontainer" type="Node2D" parent="TargetHUDContainer/HealthBarAssembly/HealthBarBGPolys"]
 position = Vector2(93.237, 96)
 scale = Vector2(1.075, 1.075)
 
-[node name="Polygon2D2" type="Polygon2D" parent="TargetHUD/PanelContainer/Control/Control/Node2D"]
+[node name="Border" type="Polygon2D" parent="TargetHUDContainer/HealthBarAssembly/HealthBarBGPolys/2Dcontainer"]
 position = Vector2(-8.07819, -0.355621)
 scale = Vector2(3.20569, 3.37114)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(-22.5943, -2.11993, -22.465, -3.10846, -22.2968, -4.08387, -22.0862, -5.06373, -21.8369, -6.02827, -21.544, -6.99439, -21.2127, -7.94284, -20.8438, -8.8727, -20.4384, -9.78307, -19.9974, -10.6731, -19.5123, -11.5576, -19.002, -12.4037, -18.4482, -13.2417, -17.8612, -14.0548, -17.2419, -14.842, -16.5913, -15.6023, -15.9102, -16.3349, -15.1997, -17.0387, -14.4607, -17.7128, -13.6942, -18.3562, -12.9157, -18.9573, -12.0973, -19.5371, -11.2543, -20.0835, -10.3874, -20.5955, -9.51415, -21.0637, -8.60302, -21.5045, -7.6881, -21.9011, -6.75389, -22.2608, -5.81912, -22.5771, -4.84938, -22.8611, -3.88145, -23.1014, -2.89839, -23.3027, -1.92, -23.4616, -0.928654, -23.5813, 0.0748305, -23.6612, 1.07004, -23.6999, 2.07611, -23.6986, 3.07548, -23.6571, 4.06381, -23.5762, 5.05504, -23.4543, 6.04779, -23.2907, 7.02634, -23.0876, 7.98983, -22.8459, 8.95124, -22.562, 9.89541, -22.2402, 10.8347, -21.8758, 11.7545, -21.4741, 12.6537, -21.036, 13.5315, -20.5625, -22.5595, -0.135815)
 
-[node name="Polygon2D" type="Polygon2D" parent="TargetHUD/PanelContainer/Control/Control/Node2D"]
+[node name="Inner" type="Polygon2D" parent="TargetHUDContainer/HealthBarAssembly/HealthBarBGPolys/2Dcontainer"]
 position = Vector2(-7.68796, -0.410757)
 scale = Vector2(3.01533, 3.16183)
 polygon = PackedVector2Array(-22.5943, -2.11993, -22.465, -3.10846, -22.2968, -4.08387, -22.0862, -5.06373, -21.8369, -6.02827, -21.544, -6.99439, -21.2127, -7.94284, -20.8438, -8.8727, -20.4384, -9.78307, -19.9974, -10.6731, -19.5123, -11.5576, -19.002, -12.4037, -18.4482, -13.2417, -17.8612, -14.0548, -17.2419, -14.842, -16.5913, -15.6023, -15.9102, -16.3349, -15.1997, -17.0387, -14.4607, -17.7128, -13.6942, -18.3562, -12.9157, -18.9573, -12.0973, -19.5371, -11.2543, -20.0835, -10.3874, -20.5955, -9.51415, -21.0637, -8.60302, -21.5045, -7.6881, -21.9011, -6.75389, -22.2608, -5.81912, -22.5771, -4.84938, -22.8611, -3.88145, -23.1014, -2.89839, -23.3027, -1.92, -23.4616, -0.928654, -23.5813, 0.0748305, -23.6612, 1.07004, -23.6999, 2.07611, -23.6986, 3.07548, -23.6571, 4.06381, -23.5762, 5.05504, -23.4543, 6.04779, -23.2907, 7.02634, -23.0876, 7.98983, -22.8459, 8.95124, -22.562, 9.89541, -22.2402, 10.8347, -21.8758, 11.7545, -21.4741, 12.6537, -21.036, 13.5315, -20.5625, 14.387, -20.0545, 15.2192, -19.513, 16.0386, -18.9302, 16.8321, -18.3149, 17.5989, -17.6678, 18.3379, -16.99, 19.0384, -16.2927, 19.7194, -15.5567, 20.3697, -14.7929, 20.9801, -14.0135, 21.5668, -13.1971, 22.12, -12.3558, 22.6317, -11.5028, 23.1089, -10.6274, 23.5509, -9.73044, 23.9566, -8.81288, 24.5117, -7.48251, -22.3901, 0.587833)
 
-[node name="HealthBarHealBG" type="TextureProgressBar" parent="TargetHUD/PanelContainer/Control"]
+[node name="HealthBarHealBG" type="TextureProgressBar" parent="TargetHUDContainer/HealthBarAssembly"]
 unique_name_in_owner = true
 layout_mode = 2
 offset_left = -3.0
@@ -97,7 +96,7 @@ tint_progress = Color(1, 0, 0.435294, 1)
 radial_initial_angle = 270.0
 radial_fill_degrees = 180.0
 
-[node name="HealthBarDamageBG" type="TextureProgressBar" parent="TargetHUD/PanelContainer/Control/HealthBarHealBG"]
+[node name="HealthBarDamageBG" type="TextureProgressBar" parent="TargetHUDContainer/HealthBarAssembly/HealthBarHealBG"]
 unique_name_in_owner = true
 layout_mode = 2
 offset_right = 138.0
@@ -112,7 +111,7 @@ tint_progress = Color(1, 0, 0.435294, 1)
 radial_initial_angle = 270.0
 radial_fill_degrees = 180.0
 
-[node name="HealthBar" type="TextureProgressBar" parent="TargetHUD/PanelContainer/Control/HealthBarHealBG/HealthBarDamageBG"]
+[node name="HealthBar" type="TextureProgressBar" parent="TargetHUDContainer/HealthBarAssembly/HealthBarHealBG/HealthBarDamageBG"]
 unique_name_in_owner = true
 layout_mode = 2
 offset_right = 138.0
@@ -127,36 +126,36 @@ tint_progress = Color(1, 0, 0.435294, 1)
 radial_initial_angle = 270.0
 radial_fill_degrees = 180.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TargetHUD/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TargetHUDContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="TargetHUD/PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="TargetHUDContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 135
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 10
 
-[node name="NameLabel" type="Label" parent="TargetHUD/PanelContainer/VBoxContainer/MarginContainer"]
+[node name="NameLabel" type="Label" parent="TargetHUDContainer/VBoxContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = " "
+text = "Missingno."
 label_settings = SubResource("LabelSettings_dc0tt")
 
-[node name="MarginContainer2" type="MarginContainer" parent="TargetHUD/PanelContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="TargetHUDContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 150
 theme_override_constants/margin_right = 10
 
-[node name="HFlowContainer" type="HFlowContainer" parent="TargetHUD/PanelContainer/VBoxContainer/MarginContainer2"]
+[node name="HFlowContainer" type="HFlowContainer" parent="TargetHUDContainer/VBoxContainer/MarginContainer2"]
 layout_mode = 2
 
-[node name="PercentLabel" type="Label" parent="TargetHUD/PanelContainer/VBoxContainer/MarginContainer2/HFlowContainer"]
+[node name="PercentLabel" type="Label" parent="TargetHUDContainer/VBoxContainer/MarginContainer2/HFlowContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100%"
 label_settings = SubResource("LabelSettings_5eldg")
 
-[node name="FlavorLabel" type="Label" parent="TargetHUD/PanelContainer/VBoxContainer/MarginContainer2/HFlowContainer"]
+[node name="FlavorLabel" type="Label" parent="TargetHUDContainer/VBoxContainer/MarginContainer2/HFlowContainer"]
 layout_mode = 2
 text = " Core Integrity"
 label_settings = SubResource("LabelSettings_5eldg")

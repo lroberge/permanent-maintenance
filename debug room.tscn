@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://cullqihbutj33"]
+
+[ext_resource type="PackedScene" uid="uid://bldostj6bevrm" path="res://ui/TargetUI_alttest.tscn" id="1_hxfbc"]
+[ext_resource type="PackedScene" uid="uid://deaahnkg11gl1" path="res://ui/ChatBox_StyleTest.tscn" id="2_g0m2l"]
+[ext_resource type="Script" path="res://ui/TempScaleAdjuster.gd" id="3_5ac7v"]
+[ext_resource type="PackedScene" uid="uid://ds4koi8cxkda3" path="res://test arena.tscn" id="4_3afmk"]
+
+[node name="Node" type="Node"]
+
+[node name="TargetHUD" parent="." instance=ExtResource("1_hxfbc")]
+
+[node name="Message List" parent="." instance=ExtResource("2_g0m2l")]
+anchors_preset = 12
+anchor_top = 1.0
+offset_left = 16.0
+offset_top = -278.0
+offset_right = -1367.0
+offset_bottom = -16.0
+grow_vertical = 0
+
+[node name="SpinBox" type="SpinBox" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 40.0
+offset_right = -8.0
+offset_bottom = 71.0
+grow_horizontal = 0
+min_value = 1.0
+max_value = 1.5
+step = 0.01
+value = 1.0
+script = ExtResource("3_5ac7v")
+
+[node name="Label" type="Label" parent="SpinBox"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -253.0
+offset_top = -31.0
+offset_bottom = -5.0
+grow_horizontal = 0
+text = "THE FUCKED UP SCALE ADJUSTER"
+
+[node name="TestEnvironment" parent="." instance=ExtResource("4_3afmk")]
+
+[connection signal="value_changed" from="SpinBox" to="SpinBox" method="_on_value_changed"]

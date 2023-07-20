@@ -29,7 +29,7 @@ states/target_in/position = Vector2(127.65, 89)
 states/target_out/node = SubResource("AnimationNodeAnimation_ycurk")
 states/target_out/position = Vector2(250.15, -4.50003)
 transitions = ["Start", "target_in", SubResource("AnimationNodeStateMachineTransition_887gt"), "target_in", "target_out", SubResource("AnimationNodeStateMachineTransition_5g56c"), "target_out", "target_in", SubResource("AnimationNodeStateMachineTransition_gh3g0")]
-graph_offset = Vector2(-199.6, -136)
+graph_offset = Vector2(-292.6, -92)
 
 [sub_resource type="Animation" id="Animation_8ej10"]
 length = 0.001
@@ -116,6 +116,7 @@ size = Vector3(1, 1, 1.113)
 texture_albedo = ExtResource("1_qkyi7")
 texture_emission = ExtResource("1_qkyi7")
 emission_energy = 0.0
+modulate = Color(0, 0.368627, 1, 1)
 albedo_mix = 0.0
 upper_fade = 1e-05
 lower_fade = 1.07177e-05

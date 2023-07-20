@@ -97,11 +97,12 @@ border_width_top = 6
 border_width_right = 6
 border_width_bottom = 6
 border_color = Color(1, 1, 1, 0)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 corner_detail = 10
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kaoo2"]
 bg_color = Color(0, 0, 0, 1)
@@ -115,6 +116,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 10
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cgitv"]
 bg_color = Color(0, 0, 0, 1)
@@ -128,6 +130,7 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 10
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ri87o"]
 content_margin_left = 9.0
@@ -149,7 +152,7 @@ corner_detail = 6
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_pressed_color = Color(0, 0, 0, 1)
-Button/font_sizes/font_size = 20
+Button/font_sizes/font_size = 24
 Button/fonts/font = SubResource("FontVariation_4cdjy")
 Button/styles/normal = SubResource("StyleBoxFlat_eckhr")
 Button/styles/pressed = SubResource("StyleBoxFlat_2f6e1")
@@ -160,8 +163,8 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_kvbuh")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_57u05")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_8gml5")
 RichTextLabel/colors/default_color = Color(0, 0, 0, 1)
-RichTextLabel/font_sizes/mono_font_size = 13
-RichTextLabel/font_sizes/normal_font_size = 14
+RichTextLabel/font_sizes/mono_font_size = 18
+RichTextLabel/font_sizes/normal_font_size = 20
 RichTextLabel/fonts/mono_font = SubResource("FontVariation_3xuha")
 RichTextLabel/fonts/normal_font = SubResource("FontVariation_0r0ck")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_tm3dv")

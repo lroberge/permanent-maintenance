@@ -2,6 +2,8 @@ class_name CombatBody extends CharacterBody3D
 
 enum CombatTeam {UNKNOWN, FRIEND, ENEMY}
 
+static var AllCombatants: Array[CombatBody] = []
+
 signal health_changed(new_health: float, max_health: float)
 
 @export var TARGET_NAME = "Unknown"
@@ -18,6 +20,9 @@ var curr_health = MAX_HEALTH
 ## The direction that this body wants to move.
 var moveDirection = Vector3.ZERO
 var curr_target: CombatBody = null
+
+func _ready():
+	AllCombatants.append(self)
 
 # Targeting functions
 

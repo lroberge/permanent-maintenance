@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://clcbd8oewhdx0"]
+
+[ext_resource type="Script" path="res://attacks/AoE.gd" id="1_8slei"]
+[ext_resource type="PackedScene" uid="uid://dk63jm1qeljh0" path="res://attacks/CircularAoE_VFX.tscn" id="2_441by"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_anxou"]
+radius = 2.5
+height = 100.0
+
+[node name="AoE" type="Area3D"]
+collision_layer = 0
+collision_mask = 4
+input_ray_pickable = false
+script = ExtResource("1_8slei")
+vfx_scene = ExtResource("2_441by")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_anxou")

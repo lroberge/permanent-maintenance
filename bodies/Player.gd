@@ -26,6 +26,7 @@ var current_zoom = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	CursorInputManager.target_changed.connect(update_target)
 	if VERTICAL_SENSITIVITY <= 0:
 		VERTICAL_SENSITIVITY = SENSITIVITY
 	if HORIZONTAL_SENSITIVITY <= 0:
@@ -37,6 +38,11 @@ func _ready() -> void:
 	# If not grabby controls, always capture the mouse
 	if not GRABBY:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	super()
+
+
+func update_target(new: CombatBody, old: CombatBody):
+	curr_target = new
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,6 +56,12 @@ func _process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_close"):
 		get_tree().quit()
+
+	if curr_target != null:
+		if event.is_action_pressed("debug_damagetarget"):
+			Damage.deal_singletarget(1.0, curr_target)
+	if event.is_action_pressed("debug_healtarget"):
+		Damage.deal_raidwide(20.0, self)
 
 	# Grabby controls - cursor is captured only while RMB held + controls camera only during that period
 	if GRABBY:
