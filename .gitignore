@@ -1,2 +1,48 @@
 # Godot 4+ specific ignores
 .godot/
+*.blend
+*.fbx
+assets/external/Wall Clock 3dmodelscc0/Wall_Clock.fbx.import
+assets/external/Wall Clock 3dmodelscc0/Mat_Normal_DirectX.png.import
+assets/external/Wall Clock 3dmodelscc0/Mat_Normal_DirectX.png
+assets/external/Wall Clock 3dmodelscc0/Mat_Base_Color.png.import
+assets/external/Wall Clock 3dmodelscc0/Mat_Base_Color.png
+assets/external/Wall Clock 3dmodelscc0/Glass_Opacity.png.import
+assets/external/Wall Clock 3dmodelscc0/Glass_Opacity.png
+assets/external/Wall Clock 3dmodelscc0/Glass_Base_Color.png.import
+assets/external/Wall Clock 3dmodelscc0/Glass_Base_Color.png
+assets/external/Wall Clock 3dmodelscc0/clock_mat.tres
+assets/external/Wall Clock 3dmodelscc0/Wall_Clock_Glass_Opacity.png
+assets/external/Wall Clock 3dmodelscc0/Wall_Clock_Glass_Opacity.png.import
+assets/external/Wall Clock 3dmodelscc0/Wall_Clock_Mat_Base_Color.png
+assets/external/Wall Clock 3dmodelscc0/Wall_Clock_Mat_Base_Color.png.import
+assets/external/Wall Clock 3dmodelscc0/Wall_Clock_Mat_Normal_DirectX.png
+assets/external/Wall Clock 3dmodelscc0/Wall_Clock_Mat_Normal_DirectX.png.import
+assets/ALERTA.wav
+assets/ALERTA.wav.import
+assets/ALERTA_2.wav
+assets/ALERTA_2.wav.import
+assets/ALERTA_COMBINED.mp3
+assets/ALERTA_COMBINED.mp3.import
+assets/external/music/ascension.mp3
+assets/external/music/ascension.mp3.import
+assets/external/music/ascension.wav
+assets/external/music/ascension.wav.import
+assets/external/music/cloudsurfer.mp3
+assets/external/music/cloudsurfer.mp3.import
+assets/external/music/destroyer.mp3
+assets/external/music/destroyer.mp3.import
+assets/external/music/escape.mp3
+assets/external/music/escape.mp3.import
+assets/external/music/escape.wav
+assets/external/music/escape.wav.import
+assets/external/music/existentialism.mp3
+assets/external/music/existentialism.mp3.import
+assets/external/music/falling.mp3
+assets/external/music/falling.mp3.import
+assets/external/music/falling.wav
+assets/external/music/falling.wav.import
+assets/external/music/subaquatic.mp3
+assets/external/music/subaquatic.mp3.import
+Doomsday.zip
+blend/arenawalls.blend.import
