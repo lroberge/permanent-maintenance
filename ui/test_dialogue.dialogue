@@ -1,14 +1,13 @@
 ~ this_is_a_node_title
 
-[color=lightblue]Nathan[/color]: [[Hi|Hello|Howdy]], this is some dialogue.[next=0.5]
-Nathan: Here are some choices.
+[color=lightblue]Nathan[/color]: [[Hi|Hello|Howdy]], this is some dialogue.[next=3]
+Nathan: Here are some choices.[next=3]
 - First one
-	Nathan: You picked the first one.
+	Nathan: You picked the first one.[next=3]
+	=> this_is_a_node_title
 - Second one
-	Nathan: You picked the second one.
-- Start again => this_is_a_node_title
-- End the conversation => END
-Nathan: For more information see the online documentation.
+	Nathan: You picked the second one.[next=3]
+Nathan: For more information see the online documentation.[next=3]
 
 => END
 

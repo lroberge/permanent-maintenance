@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://deaahnkg11gl1"]
+[gd_scene load_steps=6 format=3 uid="uid://deaahnkg11gl1"]
 
 [ext_resource type="PackedScene" uid="uid://caljshhui2rts" path="res://ui/ChatBox.tscn" id="1_ipgtl"]
 [ext_resource type="Theme" uid="uid://uppn2s06nbbb" path="res://ui/y2k_theme.tres" id="2_1d4rt"]
+[ext_resource type="Script" path="res://ui/TestChat.gd" id="3_wj8u1"]
 
 [sub_resource type="Gradient" id="Gradient_exjnx"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -14,8 +15,13 @@ fill_to = Vector2(0.5, 1)
 
 [node name="Message List" instance=ExtResource("1_ipgtl")]
 theme = ExtResource("2_1d4rt")
+script = ExtResource("3_wj8u1")
+
+[node name="InnerMargin" parent="ChatBox/Background" index="0"]
+script = null
 
 [node name="ChatText" parent="ChatBox/Background/InnerMargin" index="0"]
+unique_name_in_owner = true
 mouse_force_pass_scroll_events = false
 text = "[code][color=blue]a player[/color]:[/code] here is some example chat text
 [code][color=blue]a player[/color]:[/code] here is some example chat text

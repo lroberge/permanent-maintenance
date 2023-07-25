@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccn1cmdvpjhuh"]
+[gd_scene load_steps=9 format=3 uid="uid://ccn1cmdvpjhuh"]
 
 [ext_resource type="Theme" uid="uid://uppn2s06nbbb" path="res://ui/y2k_theme.tres" id="1_j78px"]
+[ext_resource type="Script" path="res://ui/DialogueChoicePicker.gd" id="2_bhclc"]
 [ext_resource type="Texture2D" uid="uid://dn7pehqtvlt5u" path="res://assets/targethealthwheel.svg" id="2_ub4oy"]
 [ext_resource type="Texture2D" uid="uid://bf4jvmqyiugxl" path="res://assets/key_bg.svg" id="3_h53lo"]
 [ext_resource type="FontFile" uid="uid://cqqhi8fbf7n3u" path="res://assets/fonts/Archivo/Archivo-VariableFont_wdth,wght.ttf" id="4_rwgtl"]
@@ -24,6 +25,7 @@ offset_top = -99.0
 offset_right = 361.0
 grow_vertical = 0
 theme = ExtResource("1_j78px")
+script = ExtResource("2_bhclc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -81,7 +83,8 @@ vertical_alignment = 1
 [node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+[node name="ChoiceText1" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "I mean, we could..."
 label_settings = SubResource("LabelSettings_01qt4")
@@ -122,7 +125,8 @@ vertical_alignment = 1
 [node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+[node name="ChoiceText2" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Nah."
 label_settings = SubResource("LabelSettings_01qt4")

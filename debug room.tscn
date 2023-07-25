@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cullqihbutj33"]
+[gd_scene load_steps=10 format=3 uid="uid://cullqihbutj33"]
 
 [ext_resource type="PackedScene" uid="uid://bldostj6bevrm" path="res://ui/TargetUI_alttest.tscn" id="1_hxfbc"]
 [ext_resource type="PackedScene" uid="uid://deaahnkg11gl1" path="res://ui/ChatBox_StyleTest.tscn" id="2_g0m2l"]
 [ext_resource type="Script" path="res://ui/TempScaleAdjuster.gd" id="3_5ac7v"]
+[ext_resource type="Resource" uid="uid://dknks8rph88te" path="res://ui/test_dialogue.dialogue" id="3_8puv6"]
 [ext_resource type="PackedScene" uid="uid://ds4koi8cxkda3" path="res://test arena.tscn" id="4_3afmk"]
 [ext_resource type="FontFile" uid="uid://culb0iqutp5v0" path="res://assets/fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="5_mgrcl"]
 [ext_resource type="Script" path="res://FPSCounter.gd" id="5_obe0c"]
@@ -21,11 +22,14 @@ offset_top = -278.0
 offset_right = -1367.0
 offset_bottom = -16.0
 grow_vertical = 0
+dialogue = ExtResource("3_8puv6")
+starting_title = "this_is_a_node_title"
 
 [node name="Control" type="Control" parent="Message List"]
 layout_mode = 2
 
 [node name="DialogueChoicePicker" parent="Message List/Control" instance=ExtResource("8_ryumh")]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
