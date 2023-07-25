@@ -355,3 +355,5 @@ text = "00"
 label_settings = SubResource("LabelSettings_6neth")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton0" to="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton0" method="_on_pressed"]

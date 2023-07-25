@@ -75,7 +75,7 @@ func heal_aoe() -> bool:
 			"circle",
 			AoEs.healing_callback(aoe_percent, self, true)
 			)
-		.with_scale(1.5)
+		.with_scale(3)
 		.with_color(Color.FOREST_GREEN)
 		.with_position(self.global_position)
 		.with_warntime(0.1)

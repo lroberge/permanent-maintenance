@@ -34,3 +34,9 @@ func _process(delta: float) -> void:
 	$GCDOverlay.size.y = GCD_OVERLAY_MAX_HEIGHT * gcd
 	if gcd > 0:
 		disabled = true
+
+
+func _on_pressed() -> void:
+	if action != null:
+		ActionsCoord.fire_action(action.id)
+	pass # Replace with function body.

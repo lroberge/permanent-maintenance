@@ -98,6 +98,9 @@ texture = SubResource("GradientTexture2D_3y7tp")
 expand_mode = 1
 flip_v = true
 
+[node name="HBoxContainer" parent="ChatBox" index="1"]
+visible = false
+
 [node name="Button" parent="ChatBox/HBoxContainer" index="0"]
 text = "area"
 

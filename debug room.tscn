@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cullqihbutj33"]
+[gd_scene load_steps=9 format=3 uid="uid://cullqihbutj33"]
 
 [ext_resource type="PackedScene" uid="uid://bldostj6bevrm" path="res://ui/TargetUI_alttest.tscn" id="1_hxfbc"]
 [ext_resource type="PackedScene" uid="uid://deaahnkg11gl1" path="res://ui/ChatBox_StyleTest.tscn" id="2_g0m2l"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://culb0iqutp5v0" path="res://assets/fonts/Tektur/Tektur-VariableFont_wdth,wght.ttf" id="5_mgrcl"]
 [ext_resource type="Script" path="res://FPSCounter.gd" id="5_obe0c"]
 [ext_resource type="PackedScene" uid="uid://q7a0khmi2pq2" path="res://ui/compound_hotbar.tscn" id="7_3a656"]
+[ext_resource type="PackedScene" uid="uid://ccn1cmdvpjhuh" path="res://ui/DialogueChoicePicker.tscn" id="8_ryumh"]
 
 [node name="Node" type="Node"]
 
@@ -20,6 +21,18 @@ offset_top = -278.0
 offset_right = -1367.0
 offset_bottom = -16.0
 grow_vertical = 0
+
+[node name="Control" type="Control" parent="Message List"]
+layout_mode = 2
+
+[node name="DialogueChoicePicker" parent="Message List/Control" instance=ExtResource("8_ryumh")]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 11.0
+offset_right = 392.0
+grow_horizontal = 0
 
 [node name="SpinBox" type="SpinBox" parent="."]
 visible = false

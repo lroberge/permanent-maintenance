@@ -249,9 +249,10 @@ to = NodePath("../Cancel casting")
 event = &"being_rescued"
 
 [node name="StateChartDebugger" parent="." instance=ExtResource("9_r8fju")]
-visible = false
-offset_left = 1484.0
-offset_bottom = -604.0
+offset_left = 14.0
+offset_top = 13.0
+offset_right = -1506.0
+offset_bottom = -806.0
 initial_node_to_watch = NodePath("../StateChart")
 
 [node name="RegenTimer" type="Timer" parent="."]

@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccn1cmdvpjhuh"]
+
+[ext_resource type="Theme" uid="uid://uppn2s06nbbb" path="res://ui/y2k_theme.tres" id="1_j78px"]
+[ext_resource type="Texture2D" uid="uid://dn7pehqtvlt5u" path="res://assets/targethealthwheel.svg" id="2_ub4oy"]
+[ext_resource type="Texture2D" uid="uid://bf4jvmqyiugxl" path="res://assets/key_bg.svg" id="3_h53lo"]
+[ext_resource type="FontFile" uid="uid://cqqhi8fbf7n3u" path="res://assets/fonts/Archivo/Archivo-VariableFont_wdth,wght.ttf" id="4_rwgtl"]
+[ext_resource type="FontFile" uid="uid://bdrij7ju8seoi" path="res://assets/fonts/Archivo/Archivo-Italic-VariableFont_wdth,wght.ttf" id="5_10gkx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_13wv7"]
+font = ExtResource("4_rwgtl")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_01qt4"]
+font = ExtResource("5_10gkx")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[node name="DialogueChoicePicker" type="PanelContainer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -99.0
+offset_right = 361.0
+grow_vertical = 0
+theme = ExtResource("1_j78px")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(86, 86)
+layout_mode = 2
+value = 83.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_progress = ExtResource("2_ub4oy")
+tint_progress = Color(0, 0.494118, 1, 1)
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+texture_filter = 6
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("3_h53lo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.5
+offset_top = -12.5
+offset_right = 10.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "X"
+label_settings = SubResource("LabelSettings_13wv7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "I mean, we could..."
+label_settings = SubResource("LabelSettings_01qt4")
+vertical_alignment = 2
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+texture_filter = 6
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("3_h53lo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.5
+offset_top = -12.5
+offset_right = 10.5
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "V"
+label_settings = SubResource("LabelSettings_13wv7")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Nah."
+label_settings = SubResource("LabelSettings_01qt4")
+vertical_alignment = 2

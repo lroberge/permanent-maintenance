@@ -10,4 +10,4 @@ name = "Pull"
 id = &"rescue"
 cast_time = 0.0
 cooldown = 5.0
-description = "Forces a targeted teammate towards the firing agent."
+description = "Force a targeted teammate to move towards you."

@@ -10,4 +10,4 @@ name = "Reboot"
 id = &"reboot"
 cast_time = 7.0
 cooldown = 30.0
-description = "Reinitializes a broken teammate with 30% integrity."
+description = "Reinitialize a broken teammate with 30% integrity."

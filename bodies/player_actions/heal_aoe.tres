@@ -10,4 +10,4 @@ name = "Areal Restoration"
 id = &"heal_aoe"
 cast_time = 4.0
 cooldown = 12.0
-description = "Restores 25% integrity to all teammates within 7.5m of the firing agent."
+description = "Restore 25% integrity to all teammates inside a circle centered on you."

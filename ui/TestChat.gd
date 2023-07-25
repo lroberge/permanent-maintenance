@@ -10,6 +10,8 @@ var dialogue_line: DialogueLine:
 			chatline += "[code]" + dialogue_line.character + "[/code]" + ": "
 		chatline += dialogue_line.text + "\n"
 		$ChatText.append_text(chatline)
+		if dialogue_line.responses.size() > 0:
+			Chat.present_choice(dialogue_line.responses, dialogue_line.time)
 		if dialogue_line.time != null:
 			var time = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()
 			await get_tree().create_timer(time).timeout
@@ -20,11 +22,15 @@ var dialogue_line: DialogueLine:
 func _ready() -> void:
 	$ChatText.get_v_scroll_bar().value_changed.connect(scrolled)
 	$ChatText.text = ""
+	Chat.choice_made.connect(continue_from_choice)
 	scrolled($ChatText.get_v_scroll_bar().value)
 	dialogue_line = await dialogue.get_next_dialogue_line("chatting_test")
 
 func next(next_id: String) -> void:
 	self.dialogue_line = await dialogue.get_next_dialogue_line(next_id)
+
+func continue_from_choice(response: DialogueResponse):
+	self.dialogue_line = await dialogue.get_next_dialogue_line(response.next_id)
 
 
 func scrolled(value: float) -> void:
