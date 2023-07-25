@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerActionDefinition" load_steps=3 format=3 uid="uid://dqq0m57nxs812"]
+
+[ext_resource type="Texture2D" uid="uid://ddpwv1lwj3png" path="res://assets/heal_aoe.svg" id="1_5iqww"]
+[ext_resource type="Script" path="res://PlayerAction.gd" id="1_8cwwt"]
+
+[resource]
+script = ExtResource("1_8cwwt")
+icon = ExtResource("1_5iqww")
+name = "Areal Restoration"
+id = &"heal_aoe"
+cast_time = 4.0
+cooldown = 12.0
+description = "Restores 25% integrity to all teammates within 7.5m of the firing agent."

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnqslfjk1im00"]
+
+[ext_resource type="Script" path="res://attacks/compound/CompoundAttack.gd" id="1_vpgxi"]
+[ext_resource type="PackedScene" uid="uid://clcbd8oewhdx0" path="res://attacks/CircularAoE.tscn" id="2_rqpxy"]
+
+[node name="millenium_bug" type="Node3D" node_paths=PackedStringArray("attack_aoes")]
+script = ExtResource("1_vpgxi")
+attack_name = "Millenium Bug"
+attack_aoes = [NodePath("AoE")]
+random_rotation_step = 180
+
+[node name="TestEncounter" parent="." instance_placeholder="res://test arena.tscn"]
+
+[node name="AoE" parent="." instance=ExtResource("2_rqpxy")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

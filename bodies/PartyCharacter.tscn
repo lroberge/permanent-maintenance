@@ -1,0 +1,268 @@
+[gd_scene load_steps=22 format=3 uid="uid://1ojsuliu8dkl"]
+
+[ext_resource type="Script" path="res://bodies/PartyCharacterBody.gd" id="1_x5gm5"]
+[ext_resource type="PackedScene" uid="uid://d3t477i8u0vib" path="res://bodies/TargetingDecal.tscn" id="2_thmu6"]
+[ext_resource type="Script" path="res://bodies/PartyCharStateChart.gd" id="3_na7up"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/parallel_state.gd" id="4_v7cl4"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_ag71v"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_dhhle"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="7_er6uu"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/history_state.gd" id="8_8g7a6"]
+[ext_resource type="Script" path="res://addons/godot_state_charts/state_is_active_guard.gd" id="8_lytof"]
+[ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_r8fju"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bdroc"]
+
+[sub_resource type="Gradient" id="Gradient_8cy8o"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.180718, 0.887255, 0.0152687, 1, 1, 0.0187217, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lsgsm"]
+gradient = SubResource("Gradient_8cy8o")
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_1cps7"]
+diffuse_mode = 3
+albedo_texture = SubResource("GradientTexture1D_lsgsm")
+uv1_offset = Vector3(0.25, 0, 0)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vgu6"]
+
+[sub_resource type="Resource" id="Resource_bxvqr"]
+script = ExtResource("8_lytof")
+state = NodePath("../../../../Cast State/Idle")
+
+[sub_resource type="Resource" id="Resource_yrug3"]
+script = ExtResource("8_lytof")
+state = NodePath("../../../../Cast State/Casting")
+
+[sub_resource type="Resource" id="Resource_7pwf4"]
+script = ExtResource("8_lytof")
+state = NodePath("../../../../Attention/AttackNoticed")
+
+[sub_resource type="Resource" id="Resource_mqoit"]
+script = ExtResource("8_lytof")
+state = NodePath("../../../../Attention/AttackNoticed")
+
+[sub_resource type="Resource" id="Resource_8xfkh"]
+script = ExtResource("8_lytof")
+state = NodePath("../../../PhysicalBehavior/Encounter")
+
+[sub_resource type="Resource" id="Resource_cxcbp"]
+script = ExtResource("8_lytof")
+state = NodePath("../../../PhysicalBehavior/Encounter")
+
+[node name="PartyCharBody" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_x5gm5")
+TARGET_NAME = "Someone Else"
+TEAM = 1
+
+[node name="Model" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991394, 0)
+mesh = SubResource("CapsuleMesh_bdroc")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("ORMMaterial3D_1cps7")
+
+[node name="TargetingDecal" parent="Model" instance=ExtResource("2_thmu6")]
+transform = Transform3D(-2, 0, 3.01992e-07, 0, 2, 0, -3.01992e-07, 0, -2, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_3vgu6")
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("3_na7up")
+
+[node name="ParallelState" type="Node" parent="StateChart"]
+script = ExtResource("4_v7cl4")
+
+[node name="Attention" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("5_ag71v")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/Attention"]
+script = ExtResource("6_dhhle")
+
+[node name="attack_noticed" type="Node" parent="StateChart/ParallelState/Attention/Idle"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../AttackNoticed")
+event = &"attack_noticed"
+
+[node name="AttackNoticed" type="Node" parent="StateChart/ParallelState/Attention"]
+script = ExtResource("6_dhhle")
+
+[node name="attack_end_noticed" type="Node" parent="StateChart/ParallelState/Attention/AttackNoticed"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Idle")
+event = &"attack_end_noticed"
+
+[node name="PhysicalBehavior" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("5_ag71v")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/PhysicalBehavior"]
+script = ExtResource("6_dhhle")
+
+[node name="encounter_started" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Idle"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Encounter")
+event = &"encounter_started"
+
+[node name="Rescue" type="Node" parent="StateChart/ParallelState/PhysicalBehavior"]
+script = ExtResource("6_dhhle")
+
+[node name="rescue_finished" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Rescue"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Return from Rescue")
+event = &"rescue_finished"
+delay_seconds = 0.25
+
+[node name="Encounter" type="Node" parent="StateChart/ParallelState/PhysicalBehavior"]
+script = ExtResource("5_ag71v")
+initial_state = NodePath("Perform standard rotation")
+
+[node name="Perform standard rotation" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter"]
+script = ExtResource("6_dhhle")
+
+[node name="attack_noticed (idle)" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter/Perform standard rotation"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Resolve enemy attack")
+event = &"attack_noticed"
+guard = SubResource("Resource_bxvqr")
+
+[node name="attack_noticed (casting)" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter/Perform standard rotation"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Resolve enemy attack")
+event = &"attack_noticed"
+guard = SubResource("Resource_yrug3")
+
+[node name="finish_casting" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter/Perform standard rotation"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Resolve enemy attack")
+event = &"finish_casting"
+guard = SubResource("Resource_7pwf4")
+
+[node name="cancel_casting" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter/Perform standard rotation"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Resolve enemy attack")
+event = &"cancel_casting"
+guard = SubResource("Resource_mqoit")
+
+[node name="Resolve enemy attack" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter"]
+script = ExtResource("6_dhhle")
+
+[node name="Probe own attack range" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter"]
+script = ExtResource("6_dhhle")
+
+[node name="Avoid attack until ended" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter"]
+script = ExtResource("6_dhhle")
+
+[node name="encounter_ended" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Idle")
+event = &"encounter_ended"
+
+[node name="attack_end_noticed" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter"]
+script = ExtResource("7_er6uu")
+to = NodePath("../Perform standard rotation")
+event = &"attack_end_noticed"
+delay_seconds = 0.25
+
+[node name="reached_safety" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter"]
+script = ExtResource("7_er6uu")
+to = NodePath("../Probe own attack range")
+event = &"reached_safety"
+
+[node name="reached_optimal_safety" type="Node" parent="StateChart/ParallelState/PhysicalBehavior/Encounter"]
+script = ExtResource("7_er6uu")
+to = NodePath("../Avoid attack until ended")
+event = &"reached_optimal_safety"
+
+[node name="Return from Rescue" type="Node" parent="StateChart/ParallelState/PhysicalBehavior"]
+script = ExtResource("8_8g7a6")
+deep = true
+default_state = NodePath("../Encounter")
+
+[node name="being_rescued" type="Node" parent="StateChart/ParallelState/PhysicalBehavior"]
+script = ExtResource("7_er6uu")
+to = NodePath("../Rescue")
+event = &"being_rescued"
+
+[node name="Cast State" type="Node" parent="StateChart/ParallelState"]
+script = ExtResource("5_ag71v")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/ParallelState/Cast State"]
+editor_description = "State of \"not casting\" (including instant casts)."
+script = ExtResource("6_dhhle")
+
+[node name="start_casting" type="Node" parent="StateChart/ParallelState/Cast State/Idle"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Casting")
+event = &"start_casting"
+guard = SubResource("Resource_8xfkh")
+
+[node name="start_casting_stubborn" type="Node" parent="StateChart/ParallelState/Cast State/Idle"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Casting (stubborn)")
+event = &"start_casting_stubborn"
+guard = SubResource("Resource_cxcbp")
+
+[node name="Casting" type="Node" parent="StateChart/ParallelState/Cast State"]
+editor_description = "State of \"casting, but will move if necessary to avoid danger\"."
+script = ExtResource("6_dhhle")
+
+[node name="finish_casting" type="Node" parent="StateChart/ParallelState/Cast State/Casting"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Idle")
+event = &"finish_casting"
+
+[node name="cancel_casting" type="Node" parent="StateChart/ParallelState/Cast State/Casting"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Cancel casting")
+event = &"cancel_casting"
+
+[node name="Casting (stubborn)" type="Node" parent="StateChart/ParallelState/Cast State"]
+editor_description = "State of \"casting and will not move by request of God himself\" (unless specifically rescued)."
+script = ExtResource("6_dhhle")
+
+[node name="finish_casting" type="Node" parent="StateChart/ParallelState/Cast State/Casting (stubborn)"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Idle")
+event = &"finish_casting"
+
+[node name="Cancel casting" type="Node" parent="StateChart/ParallelState/Cast State"]
+script = ExtResource("6_dhhle")
+
+[node name="return to idle (with delay)" type="Node" parent="StateChart/ParallelState/Cast State/Cancel casting"]
+script = ExtResource("7_er6uu")
+to = NodePath("../../Idle")
+delay_seconds = 0.25
+
+[node name="being_rescued" type="Node" parent="StateChart/ParallelState/Cast State"]
+script = ExtResource("7_er6uu")
+to = NodePath("../Cancel casting")
+event = &"being_rescued"
+
+[node name="StateChartDebugger" parent="." instance=ExtResource("9_r8fju")]
+visible = false
+offset_left = 1484.0
+offset_bottom = -604.0
+initial_node_to_watch = NodePath("../StateChart")
+
+[node name="RegenTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="state_entered" from="StateChart/ParallelState/Attention/AttackNoticed" to="." method="_attack_noticed"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/PhysicalBehavior/Rescue" to="." method="_rescue_physics_process"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/PhysicalBehavior/Encounter/Perform standard rotation" to="." method="_standard_rotation_physics_process"]
+[connection signal="state_entered" from="StateChart/ParallelState/PhysicalBehavior/Encounter/Resolve enemy attack" to="." method="_resolve_mechanic_start"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/PhysicalBehavior/Encounter/Resolve enemy attack" to="." method="_resolve_mechanic_physics_process"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/PhysicalBehavior/Encounter/Probe own attack range" to="." method="_probe_own_attack_range"]
+[connection signal="state_entered" from="StateChart/ParallelState/PhysicalBehavior/Encounter/Avoid attack until ended" to="." method="_start_avoiding_attack"]
+[connection signal="state_physics_processing" from="StateChart/ParallelState/PhysicalBehavior/Encounter/Avoid attack until ended" to="." method="_avoid_attack_physics_process"]

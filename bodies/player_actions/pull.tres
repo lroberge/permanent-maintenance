@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerActionDefinition" load_steps=3 format=3 uid="uid://dewyxjiwpvawg"]
+
+[ext_resource type="Texture2D" uid="uid://y6py55wx5owk" path="res://assets/pull.png" id="1_0vumx"]
+[ext_resource type="Script" path="res://PlayerAction.gd" id="1_8kow4"]
+
+[resource]
+script = ExtResource("1_8kow4")
+icon = ExtResource("1_0vumx")
+name = "Pull"
+id = &"rescue"
+cast_time = 0.0
+cooldown = 5.0
+description = "Forces a targeted teammate towards the firing agent."

@@ -16,6 +16,7 @@ fill_to = Vector2(0.5, 1)
 theme = ExtResource("2_1d4rt")
 
 [node name="ChatText" parent="ChatBox/Background/InnerMargin" index="0"]
+mouse_force_pass_scroll_events = false
 text = "[code][color=blue]a player[/color]:[/code] here is some example chat text
 [code][color=blue]a player[/color]:[/code] here is some example chat text
 [code][color=blue]a player[/color]:[/code] here is some example chat text

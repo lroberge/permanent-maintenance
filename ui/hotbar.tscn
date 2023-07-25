@@ -1,0 +1,357 @@
+[gd_scene load_steps=15 format=3 uid="uid://dydod4bjvw6af"]
+
+[ext_resource type="Theme" uid="uid://d4lmbqnheihgq" path="res://ui/hotbar_y2k_theme.tres" id="1_tu4r6"]
+[ext_resource type="Script" path="res://ui/ActionSetHotbar.gd" id="2_skq7e"]
+[ext_resource type="Script" path="res://ui/ActionButton.gd" id="4_wm7w1"]
+[ext_resource type="FontFile" uid="uid://rcfgd816ph26" path="res://assets/fonts/Excelorate-Font.otf" id="4_yojgy"]
+[ext_resource type="FontFile" uid="uid://bharhx2j8582u" path="res://assets/fonts/Robtronika/Robtronika-Italic.otf" id="6_6irmj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_igguq"]
+font = ExtResource("6_6irmj")
+font_size = 28
+font_color = Color(0.486275, 0.486275, 0.486275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ycyt"]
+content_margin_left = 4.0
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpwx1"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+corner_detail = 1
+
+[sub_resource type="FontVariation" id="FontVariation_ejlff"]
+base_font = ExtResource("4_yojgy")
+
+[sub_resource type="LabelSettings" id="LabelSettings_t0txk"]
+font = SubResource("FontVariation_ejlff")
+font_size = 24
+
+[sub_resource type="Gradient" id="Gradient_yja34"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yh7m7"]
+gradient = SubResource("Gradient_yja34")
+width = 1
+
+[sub_resource type="LabelSettings" id="LabelSettings_6neth"]
+font_size = 40
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tgbyv"]
+gradient = SubResource("Gradient_yja34")
+width = 1
+
+[node name="Action Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme = ExtResource("1_tu4r6")
+script = ExtResource("2_skq7e")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -311.5
+offset_top = -157.0
+offset_right = 311.5
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme = ExtResource("1_tu4r6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Control" type="Control" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(27, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="BarName" type="Label" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/Control"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = -8.0
+offset_top = 128.0
+offset_right = 120.0
+offset_bottom = 164.0
+grow_vertical = 2
+rotation = 4.71239
+text = "HEAL"
+label_settings = SubResource("LabelSettings_igguq")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/separator = SubResource("StyleBoxFlat_2ycyt")
+
+[node name="Control2" type="Control" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="ActionButton0" type="Button" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+clip_children = 2
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_wm7w1")
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton0"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dpwx1")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton0/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+label_settings = SubResource("LabelSettings_t0txk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GCDOverlay" type="TextureRect" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton0"]
+modulate = Color(0, 0, 0, 0.25098)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 3.14159
+pivot_offset = Vector2(65, 0)
+texture = SubResource("GradientTexture1D_yh7m7")
+
+[node name="CooldownLeft" type="Label" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton0"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "00"
+label_settings = SubResource("LabelSettings_6neth")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionButton1" type="Button" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+clip_children = 2
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_wm7w1")
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton1"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dpwx1")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton1/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+label_settings = SubResource("LabelSettings_t0txk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GCDOverlay" type="TextureRect" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton1"]
+modulate = Color(0, 0, 0, 0.25098)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 3.14159
+pivot_offset = Vector2(65, 0)
+texture = SubResource("GradientTexture1D_tgbyv")
+
+[node name="CooldownLeft" type="Label" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "00"
+label_settings = SubResource("LabelSettings_6neth")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionButton2" type="Button" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+clip_children = 2
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_wm7w1")
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dpwx1")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+label_settings = SubResource("LabelSettings_t0txk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GCDOverlay" type="TextureRect" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton2"]
+modulate = Color(0, 0, 0, 0.25098)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 3.14159
+pivot_offset = Vector2(65, 0)
+texture = SubResource("GradientTexture1D_tgbyv")
+
+[node name="CooldownLeft" type="Label" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "00"
+label_settings = SubResource("LabelSettings_6neth")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ActionButton3" type="Button" parent="Panel/MarginContainer/CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+clip_children = 2
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_wm7w1")
+
+[node name="Panel" type="Panel" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton3"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dpwx1")
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton3/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "4"
+label_settings = SubResource("LabelSettings_t0txk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GCDOverlay" type="TextureRect" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton3"]
+modulate = Color(0, 0, 0, 0.25098)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 3.14159
+pivot_offset = Vector2(65, 0)
+texture = SubResource("GradientTexture1D_tgbyv")
+
+[node name="CooldownLeft" type="Label" parent="Panel/MarginContainer/CenterContainer/HBoxContainer/ActionButton3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "00"
+label_settings = SubResource("LabelSettings_6neth")
+horizontal_alignment = 1
+vertical_alignment = 1

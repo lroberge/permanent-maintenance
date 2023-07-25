@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://0h2ws4o3bbrl"]
+
+[ext_resource type="Script" path="res://attacks/compound/TrackingCompoundAttack.gd" id="1_ti0r8"]
+[ext_resource type="PackedScene" uid="uid://dup325n4kia6j" path="res://attacks/SquareAoE.tscn" id="2_rab2d"]
+
+[node name="relativity" type="Node3D" node_paths=PackedStringArray("attack_aoes", "attract_nodes")]
+script = ExtResource("1_ti0r8")
+attack_name = "Urgency Matrix"
+attack_aoes = [NodePath("AoE"), NodePath("AoE3"), NodePath("AoE2")]
+attract_nodes = [NodePath("attract_safe")]
+random_rotation_step = 90
+
+[node name="TestEncounter" parent="." instance_placeholder="res://test arena.tscn"]
+
+[node name="attract_safe" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -7)
+
+[node name="AoE" parent="." instance=ExtResource("2_rab2d")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0, 5)
+
+[node name="AoE3" parent="." instance=ExtResource("2_rab2d")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5, 0, 5)
+
+[node name="AoE2" parent="." instance=ExtResource("2_rab2d")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0, -5)

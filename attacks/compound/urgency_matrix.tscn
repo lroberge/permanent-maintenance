@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2g1cxy7fxbqt"]
+
+[ext_resource type="Script" path="res://attacks/compound/CompoundAttack.gd" id="1_6jlg3"]
+[ext_resource type="PackedScene" uid="uid://dup325n4kia6j" path="res://attacks/SquareAoE.tscn" id="2_4yern"]
+[ext_resource type="Script" path="res://InfluencePoint.gd" id="2_q1ri7"]
+
+[node name="urgency_matrix" type="Node3D" node_paths=PackedStringArray("attack_aoes", "attract_nodes", "avoid_nodes")]
+script = ExtResource("1_6jlg3")
+attack_name = "Urgency Matrix"
+attack_aoes = [NodePath("AoE"), NodePath("AoE3"), NodePath("AoE2")]
+attract_nodes = [NodePath("infl_safe")]
+avoid_nodes = [NodePath("infl_danger"), NodePath("infl_danger2")]
+random_rotation_step = 90
+
+[node name="TestEncounter" parent="." instance_placeholder="res://test arena.tscn"]
+
+[node name="AoE" parent="." groups=["aoe"] instance=ExtResource("2_4yern")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0, 5)
+
+[node name="AoE3" parent="." groups=["aoe"] instance=ExtResource("2_4yern")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5, 0, 5)
+
+[node name="AoE2" parent="." groups=["aoe"] instance=ExtResource("2_4yern")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5, 0, -5)
+
+[node name="infl_danger" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 74, 0, 0)
+script = ExtResource("2_q1ri7")
+intensity = 5.0
+arrival_radius = 75.0
+
+[node name="infl_danger2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 74)
+script = ExtResource("2_q1ri7")
+intensity = 5.0
+arrival_radius = 75.0
+
+[node name="infl_safe" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -8)
+script = ExtResource("2_q1ri7")
+arrival_radius = 8.0
+hard_arrival_radius = 6.0

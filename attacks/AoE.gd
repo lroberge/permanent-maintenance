@@ -1,8 +1,12 @@
 class_name AoE extends Area3D
 
+signal aoe_done(aoe: AoE)
+
 var damage_callback: Callable
 var warning_time: float
 var tracking_body: Node3D = null
+
+var index: int = -1
 
 @export var vfx_scene: PackedScene
 
@@ -17,6 +21,9 @@ func set_up(damage_callback: Callable, warning_time = 3.0, color: Color = Color(
 func start(pos: Vector3 = Vector3.ZERO, scale: float = 1.0):
 	position = pos
 	self.scale = Vector3(scale, scale, scale)
+	$VFX/AnimationPlayer.play("spawn")
+
+func start_unmoving():
 	$VFX/AnimationPlayer.play("spawn")
 
 func start_tracking(body: Node3D, scale: float = 1.0):
@@ -36,4 +43,5 @@ func anim_finished(anim: StringName):
 		$VFX/AnimationPlayer.play("despawn")
 		pass
 	elif anim == "despawn":
+		aoe_done.emit(self)
 		queue_free()

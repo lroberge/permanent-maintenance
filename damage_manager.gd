@@ -15,12 +15,22 @@ static func deal_raidwide(amount: float, from: CombatBody):
 	return deal(amount, CombatBody.AllCombatants.filter(check_if_damageable(from)))
 
 static func deal_aoe(amount: float, aoe: Area3D, from: CombatBody):
-#	print("DEALING AOE DAMAGE from " + str(from))
-#	print("ALLCOMBATANTS: " + str(CombatBody.AllCombatants))
-#	print("DAMAGEABLE COMBATANTS: " + str(CombatBody.AllCombatants.filter(check_if_damageable(from))))
 	var bodies_in_aoe = CombatBody.AllCombatants.filter(check_if_damageable(from)) \
 		.filter(func (body: CombatBody): return aoe.overlaps_body(body))
 	return deal(amount, bodies_in_aoe)
+
+static func heal(amount: float, to: Array[CombatBody], percent: bool = false):
+	if percent:
+		for patient in to:
+			patient.heal_percent(abs(amount))
+	else:
+		for patient in to:
+			patient.alter_health(abs(amount))
+
+static func heal_aoe(amount: float, aoe: Area3D, from: CombatBody, percent: bool = false):
+	var bodies_in_aoe = CombatBody.AllCombatants.filter(check_if_healable(from)) \
+		.filter(func (body: CombatBody): return aoe.overlaps_body(body))
+	return heal(amount, bodies_in_aoe, percent)
 
 ## Curried function. Given a "from" body, return a function that checks if a body can be damaged by the "from" body.
 static func check_if_damageable(from: CombatBody):

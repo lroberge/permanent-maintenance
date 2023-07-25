@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://uxx1byv8n2pd"]
+
+[ext_resource type="Script" path="res://attacks/compound/CompoundAttack.gd" id="1_jjrl4"]
+[ext_resource type="PackedScene" uid="uid://owhtldj7tp5r" path="res://attacks/LineAoE.tscn" id="2_k8e07"]
+[ext_resource type="Script" path="res://InfluencePoint.gd" id="2_plb5b"]
+
+[node name="calendar" type="Node3D" node_paths=PackedStringArray("attack_aoes", "attract_nodes", "avoid_nodes")]
+script = ExtResource("1_jjrl4")
+attack_name = "Calendar"
+attack_aoes = [NodePath("AoE"), NodePath("AoE2"), NodePath("AoE3"), NodePath("AoE4"), NodePath("AoE5"), NodePath("AoE6")]
+attract_nodes = [NodePath("infl_safe")]
+avoid_nodes = [NodePath("infl_danger"), NodePath("infl_danger2"), NodePath("infl_danger3"), NodePath("infl_danger4")]
+random_rotation_step = 90
+
+[node name="TestEncounter" parent="." instance_placeholder="res://test arena.tscn"]
+
+[node name="AoE" parent="." groups=["aoe"] instance=ExtResource("2_k8e07")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -5.25, 0, 5.25)
+
+[node name="AoE2" parent="." groups=["aoe"] instance=ExtResource("2_k8e07")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 5.25, 0, -5.25)
+
+[node name="AoE3" parent="." groups=["aoe"] instance=ExtResource("2_k8e07")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 1.75, 0, -1.75)
+
+[node name="AoE4" parent="." groups=["aoe"] instance=ExtResource("2_k8e07")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -5.25, 0, -5.25)
+
+[node name="AoE5" parent="." groups=["aoe"] instance=ExtResource("2_k8e07")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 5.25, 0, 5.25)
+
+[node name="AoE6" parent="." groups=["aoe"] instance=ExtResource("2_k8e07")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.75, 0, 1.75)
+
+[node name="infl_danger" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 50)
+script = ExtResource("2_plb5b")
+intensity = 10.0
+arrival_radius = 72.0
+
+[node name="infl_danger2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -50)
+script = ExtResource("2_plb5b")
+intensity = 10.0
+arrival_radius = 72.0
+
+[node name="infl_danger3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.5, 0, -53.5)
+script = ExtResource("2_plb5b")
+intensity = 10.0
+arrival_radius = 72.0
+
+[node name="infl_danger4" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.5, 0, 53.5)
+script = ExtResource("2_plb5b")
+intensity = 10.0
+arrival_radius = 72.0
+
+[node name="infl_safe" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 0)
+script = ExtResource("2_plb5b")
+intensity = 5.0
+arrival_radius = 2.5

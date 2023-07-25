@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerActionDefinition" load_steps=3 format=3 uid="uid://yttc50epmigj"]
+
+[ext_resource type="Texture2D" uid="uid://dsapf0w6lwfol" path="res://assets/heal_single.svg" id="1_64isw"]
+[ext_resource type="Script" path="res://PlayerAction.gd" id="1_jkubo"]
+
+[resource]
+script = ExtResource("1_jkubo")
+icon = ExtResource("1_64isw")
+name = "Targeted Repair"
+id = &"heal_single"
+cast_time = 2.0
+cooldown = 6.0
+description = "Restores 75% integrity to a targeted teammate."

@@ -1,0 +1,156 @@
+[gd_scene load_steps=13 format=3 uid="uid://q7a0khmi2pq2"]
+
+[ext_resource type="PackedScene" uid="uid://dydod4bjvw6af" path="res://ui/hotbar.tscn" id="1_mbraa"]
+[ext_resource type="Texture2D" uid="uid://bf4jvmqyiugxl" path="res://assets/key_bg.svg" id="2_x8cu7"]
+[ext_resource type="Texture2D" uid="uid://j03qch3a3t34" path="res://assets/external/forumcontrols/edgy-24x24-tab.svg" id="3_7so48"]
+[ext_resource type="FontFile" uid="uid://bdrij7ju8seoi" path="res://assets/fonts/Archivo/Archivo-Italic-VariableFont_wdth,wght.ttf" id="3_r7bso"]
+[ext_resource type="Resource" uid="uid://yttc50epmigj" path="res://bodies/player_actions/heal_single.tres" id="5_8uu0c"]
+[ext_resource type="Resource" uid="uid://dqq0m57nxs812" path="res://bodies/player_actions/heal_aoe.tres" id="6_xca6f"]
+[ext_resource type="Resource" uid="uid://gbuqnuyc3o60" path="res://bodies/player_actions/reboot.tres" id="7_7w1p2"]
+[ext_resource type="Resource" uid="uid://dewyxjiwpvawg" path="res://bodies/player_actions/pull.tres" id="8_ik6nl"]
+
+[sub_resource type="Animation" id="Animation_o1koj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonLabel/Cycle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.785398]
+}
+
+[sub_resource type="Animation" id="Animation_i4enq"]
+resource_name = "cycle_to_heal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ButtonLabel/Cycle:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.785398, -3.92699]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dllx4"]
+_data = {
+"RESET": SubResource("Animation_o1koj"),
+"cycle_to_heal": SubResource("Animation_i4enq")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_48j0o"]
+font = ExtResource("3_r7bso")
+font_size = 127
+font_color = Color(0, 0, 0, 1)
+
+[node name="Compound Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 5.0
+libraries = {
+"": SubResource("AnimationLibrary_dllx4")
+}
+
+[node name="ButtonLabel" type="NinePatchRect" parent="."]
+z_index = 10
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -169.0
+offset_right = 680.0
+offset_bottom = 168.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("2_x8cu7")
+region_rect = Rect2(0, 0, 368, 368)
+patch_margin_left = 62
+patch_margin_top = 38
+patch_margin_right = 60
+patch_margin_bottom = 92
+
+[node name="Label" type="Label" parent="ButtonLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 62.0
+offset_top = 39.0
+offset_right = -64.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "▲ SHIFT"
+label_settings = SubResource("LabelSettings_48j0o")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cycle" type="TextureRect" parent="ButtonLabel"]
+z_index = -1
+custom_minimum_size = Vector2(551, 524)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -762.501
+offset_right = 566.0
+offset_bottom = -112.501
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -0.785398
+pivot_offset = Vector2(325, 325)
+texture = ExtResource("3_7so48")
+expand_mode = 1
+
+[node name="Hotbars" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 328.0
+offset_right = 328.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 1
+
+[node name="HarmHotbar" parent="Hotbars" instance=ExtResource("1_mbraa")]
+unique_name_in_owner = true
+z_index = 1
+layout_mode = 1
+offset_left = 48.0
+offset_top = -56.0
+offset_right = 48.0
+offset_bottom = -56.0
+bar_name = "Harm"
+actions = Array[Resource("res://PlayerAction.gd")]([ExtResource("5_8uu0c"), ExtResource("6_xca6f"), ExtResource("7_7w1p2"), ExtResource("8_ik6nl")])
+initially_active = true
+
+[node name="HealHotbar" parent="Hotbars" instance=ExtResource("1_mbraa")]
+unique_name_in_owner = true
+modulate = Color(0.501961, 0.501961, 0.501961, 1)
+layout_mode = 1
+offset_top = -32.0
+offset_bottom = -32.0

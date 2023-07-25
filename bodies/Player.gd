@@ -1,6 +1,12 @@
-extends CombatBody
+class_name Player extends CombatBody
 
 const deadzone = 0.3
+
+@export_group("Actions")
+@export_subgroup("Healing")
+@export var single_percent = 0.75
+@export var aoe_percent = 0.25
+@export var revive_percent = 0.3
 
 @export_group("Player Camera")
 ## If true, only capture the mouse (and accept camera input) while RMB is held. Otherwise, always capture the mouse
@@ -38,6 +44,9 @@ func _ready() -> void:
 	# If not grabby controls, always capture the mouse
 	if not GRABBY:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	ActionsCoord.register_player(self)
+
 	super()
 
 
@@ -52,6 +61,41 @@ func _process(delta: float) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	pass
 
+func heal_single() -> bool:
+	if curr_target is PartyCharacter:
+		curr_target.heal_percent(single_percent)
+		return true
+	else:
+		return false
+
+func heal_aoe() -> bool:
+	print("i tried")
+	AoeManager.create_aoe(
+		AoeSettings.new(
+			"circle",
+			AoEs.healing_callback(aoe_percent, self, true)
+			)
+		.with_scale(1.5)
+		.with_color(Color.FOREST_GREEN)
+		.with_position(self.global_position)
+		.with_warntime(0.1)
+		)
+	return true
+	pass
+
+func rescue() -> bool:
+	if curr_target is PartyCharacter:
+		curr_target.rescue(self.global_position + (self.global_position.direction_to(curr_target.global_position) * 0.25))
+		return true
+	else:
+		return false
+
+func reboot() -> bool:
+	if curr_target is PartyCharacter:
+		var success = curr_target.revive(revive_percent)
+		return success
+	else:
+		return false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_close"):

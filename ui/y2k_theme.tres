@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://uppn2s06nbbb"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://uppn2s06nbbb"]
 
 [ext_resource type="FontFile" uid="uid://cqqhi8fbf7n3u" path="res://assets/fonts/Archivo/Archivo-VariableFont_wdth,wght.ttf" id="1_r538f"]
 [ext_resource type="FontFile" uid="uid://kyhunkgd3c2j" path="res://assets/fonts/Robtronika/Robtronika-Regular.otf" id="2_afv3k"]
@@ -37,6 +37,21 @@ corner_radius_bottom_right = 10
 
 [sub_resource type="FontVariation" id="FontVariation_f6dvp"]
 base_font = ExtResource("2_afv3k")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbuyx"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kvbuh"]
 content_margin_left = 15.0
@@ -159,6 +174,7 @@ Button/styles/pressed = SubResource("StyleBoxFlat_2f6e1")
 Label/colors/font_color = Color(0, 0, 0, 1)
 Label/font_sizes/font_size = 16
 Label/fonts/font = SubResource("FontVariation_f6dvp")
+Panel/styles/panel = SubResource("StyleBoxFlat_wbuyx")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_kvbuh")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_57u05")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_8gml5")
